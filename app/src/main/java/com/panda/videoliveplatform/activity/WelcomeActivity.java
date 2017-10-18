@@ -15,11 +15,11 @@ public class WelcomeActivity extends Activity {
         setContentView(R.layout.activity_welcome);
         new Handler().postDelayed(new Runnable() {
                                       public void run() {
-                                          /*
+
                                           Intent localIntent = new Intent(WelcomeActivity.this, MainFragmentActivity.class);
                                           WelcomeActivity.this.startActivity(localIntent);
                                           WelcomeActivity.this.finish();
-                                          */
+
                                       }
 
                                   }
