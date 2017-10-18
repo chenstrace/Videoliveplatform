@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/activity_title" />
+    <LinearLayout android:orientation="horizontal" android:id="@id/layout_viewpager_title" android:background="@color/liveroom_text_background" android:layout_width="fill_parent" android:layout_height="35.0dip"
+      xmlns:android="http://schemas.android.com/apk/res/android">
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <TextView android:textSize="@dimen/liveroom_text_size" android:textColor="@color/liveroom_text_color" android:gravity="center" android:id="@id/liveroom_chat_btn" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="正在直播" android:layout_centerInParent="true" android:onClick="onClickLiveOpen" />
+            <LinearLayout android:orientation="horizontal" android:id="@id/liveroom_chat_line" android:background="@color/title_color" android:layout_width="fill_parent" android:layout_height="@dimen/liveroom_underline_size" android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <TextView android:textSize="@dimen/liveroom_text_size" android:textColor="@color/liveroom_text_color" android:gravity="center" android:id="@id/liveroom_presenter_btn" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="还未开播" android:layout_centerInParent="true" android:onClick="onClickLiveClose" />
+            <LinearLayout android:orientation="horizontal" android:id="@id/liveroom_presenter_line" android:background="@color/liveroom_underline_color_disable" android:layout_width="fill_parent" android:layout_height="@dimen/liveroom_underline_size_disable" android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+    </LinearLayout>
+    <android.support.v4.view.ViewPager android:id="@id/viewpager" android:layout_width="fill_parent" android:layout_height="fill_parent" />>
+</LinearLayout>

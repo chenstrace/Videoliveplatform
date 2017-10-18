@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:id="@id/statusbar_dummy" android:background="@drawable/fragment_title_bg" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="24.0dip" />
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/title_layout" android:background="@drawable/fragment_title_bg" android:layout_width="fill_parent" android:layout_height="@dimen/activity_title_height">
+        <ImageButton android:id="@id/image_button_back" android:background="@null" android:layout_width="35.0dip" android:layout_height="35.0dip" android:src="@drawable/login_title_button_back" />
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/search_frame_bg" android:padding="0.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+            <EditText android:textSize="16.0sp" android:textColor="@color/liveitem_name" android:layout_gravity="center_vertical" android:id="@id/searchedit" android:background="@null" android:paddingLeft="6.0dip" android:paddingTop="2.5dip" android:paddingRight="6.0dip" android:paddingBottom="3.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:hint="@string/search_hint_tips" android:singleLine="true" android:maxLength="14" android:layout_weight="1.0" android:imeOptions="actionSearch" />
+            <ImageButton android:id="@id/clear_text_btn" android:background="@drawable/clear_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" />
+        </LinearLayout>
+        <ImageButton android:id="@id/image_button_search" android:background="@drawable/background_tab" android:layout_width="35.0dip" android:layout_height="35.0dip" android:layout_marginLeft="5.0dip" android:src="@drawable/search" />
+    </LinearLayout>
+    <FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:orientation="vertical" android:id="@id/search_result_layout" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <LinearLayout android:orientation="horizontal" android:id="@id/search_room_layout" android:background="@android:color/white" android:padding="5.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:foreground="@drawable/live_item_selector">
+                <ImageView android:id="@id/search_room_img" android:layout_width="172.0dip" android:layout_height="105.0dip" android:src="@drawable/defaultlivebg" android:scaleType="fitXY" />
+                <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="10.0dip">
+                    <TextView android:textSize="13.0sp" android:textColor="@color/liveitem_name" android:ellipsize="end" android:id="@id/search_room_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" />
+                    <TextView android:textSize="13.0sp" android:textColor="@color/liveitem_name" android:id="@id/search_room_username" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4.0dip" android:layout_alignParentLeft="true" />
+                    <TextView android:textSize="10.0dip" android:textColor="@color/people_count" android:id="@id/search_room_fanscount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.5dip" android:drawableLeft="@drawable/people" android:drawablePadding="5.0dip" android:layout_alignParentRight="true" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:id="@id/layout_viewpager_title" android:background="@color/liveroom_text_background" android:layout_width="fill_parent" android:layout_height="35.0dip">
+                <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="1.0">
+                    <TextView android:textSize="@dimen/liveroom_text_size" android:textColor="@color/liveroom_text_color" android:gravity="center" android:id="@id/liveroom_chat_btn" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="正在直播" android:layout_centerInParent="true" android:onClick="onClickLiveOpen" />
+                    <LinearLayout android:orientation="horizontal" android:id="@id/liveroom_chat_line" android:background="@color/title_color" android:layout_width="fill_parent" android:layout_height="@dimen/liveroom_underline_size" android:layout_alignParentBottom="true" />
+                </RelativeLayout>
+                <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="1.0">
+                    <TextView android:textSize="@dimen/liveroom_text_size" android:textColor="@color/liveroom_text_color" android:gravity="center" android:id="@id/liveroom_presenter_btn" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="还未开播" android:layout_centerInParent="true" android:onClick="onClickLiveClose" />
+                    <LinearLayout android:orientation="horizontal" android:id="@id/liveroom_presenter_line" android:background="@color/liveroom_underline_color_disable" android:layout_width="fill_parent" android:layout_height="@dimen/liveroom_underline_size_disable" android:layout_alignParentBottom="true" />
+                </RelativeLayout>
+            </LinearLayout>
+            <android.support.v4.view.ViewPager android:id="@id/viewpager" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:id="@id/search_history_layout" android:background="@android:color/white" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <RelativeLayout android:gravity="center_vertical" android:background="#fff8f8f8" android:layout_width="fill_parent" android:layout_height="56.0dip">
+                <TextView android:textSize="16.0sp" android:textColor="@color/dark_font_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="14.0dip" android:text="@string/search_history" android:layout_alignParentLeft="true" />
+                <ImageButton android:id="@id/delete_all" android:background="@drawable/all_del_ico" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:layout_alignParentRight="true" />
+            </RelativeLayout>
+            <ScrollView android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <LinearLayout android:orientation="vertical" android:id="@id/history_list_container" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+            </ScrollView>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/activity_title" />
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/login_line_user" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="30.0dip" android:layout_marginRight="15.0dip">
+        <EditText android:textSize="13.0dip" android:textColorHighlight="#ff8e8e8e" android:id="@id/login_user_name_text" android:layout_width="fill_parent" android:layout_height="45.0dip" android:hint="@string/hint_login_activity_username" android:singleLine="true" android:maxLength="16" android:drawableLeft="@drawable/ico_user" android:drawablePadding="10.0dip" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/login_relative_user" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="15.0dip">
+        <EditText android:textSize="13.0dip" android:textColorHighlight="#ff8e8e8e" android:id="@id/login_user_psd_text" android:layout_width="fill_parent" android:layout_height="45.0dip" android:hint="@string/hint_login_activity_password" android:singleLine="true" android:maxLength="20" android:drawableLeft="@drawable/ico_key" android:drawablePadding="10.0dip" android:inputType="textPassword" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="35.0dip">
+        <Button android:textSize="13.0dip" android:textColor="#ffffffff" android:id="@id/button_login_activity_login" android:background="@drawable/blue_rect_btn" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginRight="15.0dip" android:text="@string/login_button_login_text" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="30.0dip" android:layout_marginTop="10.0dip">
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <LinearLayout android:gravity="center|right" android:id="@id/login_getaccount_layout" android:layout_width="110.0dip" android:layout_height="fill_parent" android:layout_marginRight="15.0dip" android:layout_alignParentRight="true">
+                <TextView android:textSize="15.0dip" android:textColor="@color/title_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/title_activity_login_getaccount" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center|left" android:id="@id/login_register_layout" android:layout_width="110.0dip" android:layout_height="fill_parent" android:layout_marginLeft="15.0dip">
+                <TextView android:textSize="15.0dip" android:textColor="@color/title_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/title_activity_resgister" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/layout_select_video_source" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:background="@color/play_control_bar" android:layout_width="93.0dip" android:layout_height="108.0dip">
+        <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="36.0dip">
+            <View android:background="#26ffffff" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <Button android:textSize="14.0sp" android:textColor="#ffffffff" android:gravity="center" android:id="@id/button_chaoqing" android:background="@color/no_back" android:layout_width="fill_parent" android:layout_height="35.0dip" android:text="@string/video_chaoqing" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="36.0dip">
+            <View android:background="#26ffffff" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <Button android:textSize="14.0sp" android:textColor="#ffffffff" android:gravity="center" android:id="@id/button_gaoqing" android:background="@color/no_back" android:layout_width="fill_parent" android:layout_height="35.0dip" android:text="@string/video_gaoqing" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="36.0dip">
+            <View android:background="#26ffffff" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <Button android:textSize="14.0sp" android:textColor="#ffffffff" android:gravity="center" android:id="@id/button_puqing" android:background="@color/no_back" android:layout_width="fill_parent" android:layout_height="35.0dip" android:text="@string/video_puqing" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

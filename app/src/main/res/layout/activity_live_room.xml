@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/root" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <RelativeLayout android:id="@id/player_layout" android:layout_width="fill_parent" android:layout_height="@dimen/liveroom_miniplayer_size" android:onClick="onClickMiniPlayer">
+            <tv.danmaku.ijk.media.player.widget.VideoView android:id="@id/surface_view" android:background="@android:color/black" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_centerHorizontal="true" android:layout_centerVertical="true" />
+            <LinearLayout android:orientation="horizontal" android:id="@id/player_background_mask" android:background="#ff000000" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+            <LinearLayout android:layout_gravity="center" android:orientation="vertical" android:id="@id/buffering_indicator" android:focusable="false" android:focusableInTouchMode="false" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true">
+                <ProgressBar android:id="@id/buffering_progress" android:layout_width="60.0dip" android:layout_height="60.0dip" style="@android:style/Widget.ProgressBar.Large" />
+                <TextView android:textSize="12.0sp" android:ellipsize="marquee" android:layout_gravity="center" android:id="@id/buffering_msg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:scaleType="centerInside" android:adjustViewBounds="true" android:text="@string/buffering" android:singleLine="true" android:marqueeRepeatLimit="0" />
+            </LinearLayout>
+            <LinearLayout android:id="@id/sv_danmaku_frame" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                <master.flame.danmaku.ui.widget.DanmakuView android:id="@id/sv_danmaku" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+            </LinearLayout>
+            <include layout="@layout/layout_live_status" />
+            <include layout="@layout/layout_mini_control" />
+            <include layout="@layout/layout_full_control" />
+        </RelativeLayout>
+        <LinearLayout android:orientation="vertical" android:id="@id/viewpage_layout" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <include layout="@layout/layout_viewpager_title" />
+            <android.support.v4.view.ViewPager android:id="@id/vpChart" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

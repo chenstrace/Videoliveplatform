@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/popupwindow" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:id="@id/iner_popupwindow" android:background="#ffefeff4" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <Button android:textSize="14.0dip" android:textColor="#ff2b2b2b" android:layout_gravity="center_horizontal" android:id="@id/btnGetImgFromCapture" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="42.0dip" android:text="拍照" />
+        <View android:background="#ffecf0f1" android:layout_width="fill_parent" android:layout_height="0.5dip" android:layout_marginTop="0.0dip" />
+        <Button android:textSize="14.0dip" android:textColor="#ff2b2b2b" android:layout_gravity="center_horizontal" android:id="@id/btnGetImgFromMobile" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="42.0dip" android:text="从手机上获取" />
+        <View android:background="#ffecf0f1" android:layout_width="fill_parent" android:layout_height="3.0dip" android:layout_marginTop="0.0dip" />
+        <Button android:textSize="14.0dip" android:textColor="#ff2b2b2b" android:layout_gravity="center_horizontal" android:id="@id/btnCancleHeadImg" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="42.0dip" android:text="取消" />
+    </LinearLayout>
+</LinearLayout>

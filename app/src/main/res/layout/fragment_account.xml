@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ScrollView android:background="@color/my_account_gray" android:layout_width="fill_parent" android:layout_height="fill_parent" android:fillViewport="true">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <RelativeLayout android:id="@id/my_account_head" android:background="@drawable/fragment_title_bg" android:layout_width="fill_parent" android:layout_height="150.0dip">
+                <ImageView android:id="@id/portrait_ring" android:layout_width="86.0dip" android:layout_height="86.0dip" android:layout_marginTop="0.0dip" android:src="@drawable/head_img_bg" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" />
+                <com.panda.videolivecore.view.CircleImageView android:id="@id/faceCategroyTabs" android:layout_width="64.0dip" android:layout_height="64.0dip" android:layout_marginTop="11.0dip" android:src="@drawable/default_head_img" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" app:border_width="2.0dip" app:border_color="@color/white" />
+                <TextView android:textColor="@color/white" android:id="@id/account_logintext_item" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="14.0dip" android:layout_marginBottom="8.0dip" android:text="点此登录" android:layout_below="@id/portrait_ring" android:layout_centerHorizontal="true" />
+                <LinearLayout android:orientation="vertical" android:id="@id/textblock" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/portrait_ring" android:layout_centerHorizontal="true">
+                    <TextView android:textSize="14.0dip" android:textColor="@color/white" android:layout_gravity="center_horizontal" android:id="@id/account_text_item" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="0.0dip" android:layout_marginBottom="8.0dip" android:text="" />
+                    <LinearLayout android:layout_gravity="center_horizontal" android:orientation="horizontal" android:id="@id/zhuzi" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                        <TextView android:textSize="10.0dip" android:textColor="@color/white" android:gravity="center" android:background="@drawable/my_zhuzibg" android:layout_width="56.0dip" android:layout_height="16.0dip" android:text="我的竹子" />
+                        <TextView android:textSize="14.0dip" android:textColor="@color/white" android:layout_gravity="center_vertical" android:id="@id/zhuzi_count" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="3.0dip" android:layout_marginBottom="2.0dip" android:text="0" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout android:background="@drawable/selector_my_account_bg" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="45.0dip">
+                <ImageView android:id="@id/ico1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dip" android:src="@drawable/broadcast_remind" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+                <TextView android:textColor="@color/liveitem_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="开播提醒" android:layout_toRightOf="@id/ico1" android:layout_centerVertical="true" />
+                <Switch android:id="@id/BroadCastRemeber" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" android:textOn="" android:textOff="" android:thumb="@drawable/custom_switch_inner_holo_light" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:track="@drawable/custom_switch_track_holo_light" android:switchMinWidth="46.0dip" />
+            </RelativeLayout>
+            <View android:background="@color/hostname_underline_color" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <View android:background="@color/my_account_gray" android:layout_width="fill_parent" android:layout_height="15.0dip" />
+            <View android:background="@color/hostname_underline_color" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <RelativeLayout android:id="@id/my_account_attention" android:background="@drawable/selector_my_account_bg" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="45.0dip">
+                <ImageView android:id="@id/ico2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dip" android:src="@drawable/my_attention" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+                <TextView android:textColor="@color/liveitem_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="我的关注" android:layout_toRightOf="@id/ico2" android:layout_centerVertical="true" />
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/my_arrow" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <View android:background="@color/hostname_underline_color" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <RelativeLayout android:id="@id/my_account_task" android:background="@drawable/selector_my_account_bg" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="45.0dip">
+                <ImageView android:id="@id/ico3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dip" android:src="@drawable/ico_task" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+                <TextView android:textColor="@color/liveitem_name" android:id="@id/text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="我的任务" android:layout_toRightOf="@id/ico3" android:layout_centerVertical="true" />
+                <ImageView android:id="@id/task_point" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:src="@drawable/red_point" android:layout_toRightOf="@id/text" android:layout_centerVertical="true" />
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/my_arrow" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <View android:background="@color/hostname_underline_color" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <View android:background="@color/my_account_gray" android:layout_width="fill_parent" android:layout_height="15.0dip" />
+            <View android:background="@color/hostname_underline_color" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <RelativeLayout android:id="@id/my_account_update" android:background="@drawable/selector_my_account_bg" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="45.0dip">
+                <ImageView android:id="@id/ico4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dip" android:src="@drawable/check_update" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+                <TextView android:textColor="@color/liveitem_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="检查更新" android:layout_toRightOf="@id/ico4" android:layout_centerVertical="true" />
+                <ImageView android:id="@id/img1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/my_arrow" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+                <TextView android:id="@id/txtVersion" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dip" android:layout_toLeftOf="@id/img1" android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <View android:background="@color/hostname_underline_color" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <View android:background="@color/my_account_gray" android:layout_width="fill_parent" android:layout_height="15.0dip" />
+            <View android:background="@color/hostname_underline_color" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <RelativeLayout android:id="@id/my_account_feedback" android:background="@drawable/selector_my_account_bg" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="45.0dip">
+                <ImageView android:id="@id/ico5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dip" android:src="@drawable/feed_back" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+                <TextView android:textColor="@color/liveitem_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="意见反馈" android:layout_toRightOf="@id/ico5" android:layout_centerVertical="true" />
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/my_arrow" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <View android:background="@color/hostname_underline_color" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <RelativeLayout android:id="@id/my_account_about" android:background="@drawable/selector_my_account_bg" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="45.0dip">
+                <ImageView android:id="@id/ico6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dip" android:src="@drawable/about" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+                <TextView android:textColor="@color/liveitem_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="关于我们" android:layout_toRightOf="@id/ico6" android:layout_centerVertical="true" />
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/my_arrow" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <View android:background="@color/hostname_underline_color" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

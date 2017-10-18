@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="#fff5f5f5" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/activity_title" />
+    <com.handmark.pulltorefresh.library.PullToRefreshGridView android:id="@id/livelist" android:layout_width="fill_parent" android:layout_height="fill_parent" android:horizontalSpacing="5.0dip" android:verticalSpacing="5.0dip" android:numColumns="2" android:divider="@null" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" ptr:ptrHeaderTextColor="#ff000000" xmlns:ptr="http://schemas.android.com/apk/res-auto" />
+    <include android:id="@id/loadview" android:layout_width="fill_parent" android:layout_height="fill_parent" layout="@layout/layout_loading" />
+</LinearLayout>

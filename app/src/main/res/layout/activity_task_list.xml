@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@color/task_list_background" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/activity_title" />
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="20.0dip" />
+    <com.handmark.pulltorefresh.library.PullToRefreshListView android:id="@id/listview_task" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="@color/task_list_divider" android:dividerHeight="0.0dip" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:headerDividersEnabled="true" android:footerDividersEnabled="true" ptr:ptrHeaderTextColor="#ff000000" xmlns:ptr="http://schemas.android.com/apk/res-auto" />
+    <include android:id="@id/loadview" android:layout_width="fill_parent" android:layout_height="fill_parent" layout="@layout/layout_loading" />
+</LinearLayout>

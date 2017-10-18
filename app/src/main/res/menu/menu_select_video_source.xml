@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@id/action_video_chaoqing" android:orderInCategory="100" android:title="@string/video_chaoqing" android:showAsAction="never" />
+    <item android:id="@id/action_video_gaoqing" android:orderInCategory="100" android:title="@string/video_gaoqing" android:showAsAction="never" />
+    <item android:id="@id/action_video_puqing" android:background="@drawable/btn_pause_bar" android:orderInCategory="100" android:title="@string/video_puqing" android:showAsAction="never" />
+</menu>

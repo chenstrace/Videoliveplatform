@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/activity_title" />
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/login_line_mobile" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="30.0dip" android:layout_marginRight="15.0dip">
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <Button android:enabled="false" android:textSize="13.0dip" android:textColor="#ffffffff" android:id="@id/button_mobileregister_getauth" android:background="@drawable/blue_rect_btn" android:layout_width="120.0dip" android:layout_height="wrap_content" android:text="@string/register_button_getauth_text" android:layout_alignParentRight="true" />
+            <EditText android:textSize="13.0dip" android:id="@id/register_mobile_text" android:layout_width="fill_parent" android:layout_height="45.0dip" android:layout_marginRight="10.0dip" android:hint="@string/hint_register_activity_mobile" android:singleLine="true" android:maxLength="11" android:digits="@string/register_mobile_input_digts" android:drawableLeft="@drawable/ico_phone" android:drawablePadding="10.0dip" android:layout_toLeftOf="@id/button_mobileregister_getauth" />
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/login_line_mobile_auth" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="15.0dip">
+        <EditText android:textSize="13.0dip" android:id="@id/register_mobile_auth_text" android:layout_width="fill_parent" android:layout_height="45.0dip" android:hint="@string/hint_register_activity_mobile_auth" android:singleLine="true" android:maxLength="16" android:digits="@string/register_mobile_input_digts" android:drawableLeft="@drawable/ico_number" android:drawablePadding="10.0dip" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/login_line_nickname" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="15.0dip">
+        <EditText android:textSize="13.0dip" android:id="@id/register_nick_name_text" android:layout_width="fill_parent" android:layout_height="45.0dip" android:hint="@string/hint_register_activity_nickname" android:singleLine="true" android:drawableLeft="@drawable/ico_user" android:drawablePadding="10.0dip" />
+    </LinearLayout>
+    <LinearLayout android:background="#ffd8d8d8" android:layout_width="fill_parent" android:layout_height="0.5dip" android:layout_marginLeft="15.0dip" android:layout_marginTop="1.0dip" android:layout_marginRight="15.0dip" />
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="15.0dip">
+        <EditText android:textSize="13.0dip" android:id="@id/register_user_psd_text" android:layout_width="fill_parent" android:layout_height="45.0dip" android:hint="@string/hint_register_activity_password" android:singleLine="true" android:maxLength="20" android:digits="@string/register_password_input_digts" android:drawableLeft="@drawable/ico_key" android:drawablePadding="10.0dip" android:inputType="textPassword" />
+    </LinearLayout>
+    <LinearLayout android:background="#ffd8d8d8" android:layout_width="fill_parent" android:layout_height="0.5dip" android:layout_marginLeft="15.0dip" android:layout_marginTop="1.0dip" android:layout_marginRight="15.0dip" />
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="15.0dip">
+        <EditText android:textSize="13.0dip" android:id="@id/register_user_ack_psd_text" android:layout_width="fill_parent" android:layout_height="45.0dip" android:hint="@string/hint_register_activity_ack_password" android:singleLine="true" android:maxLength="20" android:digits="@string/register_password_input_digts" android:drawableLeft="@drawable/ico_key" android:drawablePadding="10.0dip" android:inputType="textPassword" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="35.0dip">
+        <Button android:textSize="13.0dip" android:textColor="#ffffffff" android:id="@id/button_login_activity_register" android:background="@drawable/blue_rect_btn" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginRight="15.0dip" android:text="@string/register_button_register_text" />
+    </LinearLayout>
+</LinearLayout>
