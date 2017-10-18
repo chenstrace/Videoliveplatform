@@ -13,16 +13,17 @@ public class WelcomeActivity extends Activity {
     protected void onCreate(Bundle paramBundle) {
         super.onCreate(paramBundle);
         setContentView(R.layout.activity_welcome);
-        new Handler().postDelayed(new Runnable() {
-                                      public void run() {
+        new Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
 
-                                          Intent localIntent = new Intent(WelcomeActivity.this, MainFragmentActivity.class);
-                                          WelcomeActivity.this.startActivity(localIntent);
-                                          WelcomeActivity.this.finish();
+                        Intent localIntent = new Intent(WelcomeActivity.this, MainFragmentActivity.class);
+                        WelcomeActivity.this.startActivity(localIntent);
+                        WelcomeActivity.this.finish();
 
-                                      }
+                    }
 
-                                  }
+                }
                 , 2000L);
     }
 

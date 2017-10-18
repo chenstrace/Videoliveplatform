@@ -1,5 +1,7 @@
 package com.panda.videoliveplatform.fragment;
 
+import com.google.gson.Gson;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -26,6 +28,9 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 //import com.panda.videolivecore.data.SliderItemInfo;
 //import com.panda.videolivecore.data.SliderItemInfo.ResponseData;
 //import com.panda.videolivecore.net.UrlConst;
+import com.panda.videolivecore.data.GsonRequest;
+import com.panda.videolivecore.data.SliderItemInfo;
+import com.panda.videolivecore.net.UrlConst;
 import com.panda.videoliveplatform.MyApplication;
 import com.panda.videoliveplatform.R;
 
@@ -77,8 +82,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     protected String getSliderUrl() {
-        //return UrlConst.getHomeSliderUrl();
-        return "";
+        return UrlConst.getHomeSliderUrl();
     }
 
     protected void loadHotLiveData() {
@@ -113,8 +117,9 @@ public class HomeFragment extends BaseFragment {
     }
 
     protected void loadSliderData() {
-        /*
-        executeRequest(new GsonRequest(getSliderUrl(), SliderItemInfo.ResponseData.class, new Response.Listener() {
+        executeRequest(new GsonRequest(getSliderUrl(), SliderItemInfo.ResponseData.class, new Response.Listener<SliderItemInfo.ResponseData>() {
+
+
             public void onResponse(SliderItemInfo.ResponseData paramAnonymousResponseData) {
                 if (paramAnonymousResponseData.errno == 0) {
                     HomeFragment.this.mAdapter.updateSliderList(paramAnonymousResponseData.data);
@@ -131,7 +136,6 @@ public class HomeFragment extends BaseFragment {
                 HomeFragment.this.loadDataError();
             }
         }));
-        */
     }
 
     public void onAttach(Activity paramActivity) {
