@@ -4,14 +4,14 @@ import android.app.Application;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
-import com.panda.videolivecore.network.LoginManager;
+//import com.panda.videolivecore.network.LoginManager;
 
 public class CoreApplication
 {
   public static final int MSG_START_LOGIN_ACTIVITY = 257;
   private static CoreApplication g_instance = null;
   private Application mApplication = null;
-  private LoginManager mLoginManager = null;
+  //private LoginManager mLoginManager = null;
   private String mVersion = "";
 
   public CoreApplication(Application paramApplication)
@@ -25,11 +25,9 @@ public class CoreApplication
     {
       String str = this.mApplication.getPackageName();
       this.mVersion = this.mApplication.getPackageManager().getPackageInfo(str, 0).versionName;
-      label27: return;
     }
     catch (Exception localException)
     {
-      break label27;
     }
   }
 
@@ -44,31 +42,31 @@ public class CoreApplication
       g_instance = new CoreApplication(paramApplication);
   }
 
-  public LoginManager GetLoginManager()
-  {
-    return this.mLoginManager;
-  }
+//  public LoginManager GetLoginManager()
+//  {
+//    return this.mLoginManager;
+//  }
 
-  public void Logout()
-  {
-    this.mLoginManager.MenuLogout();
-  }
+//  public void Logout()
+//  {
+//    this.mLoginManager.MenuLogout();
+//  }
 
-  public void SendPtTokenRequest()
-  {
-    this.mLoginManager.asynSendPtTokenRequest();
-  }
+//  public void SendPtTokenRequest()
+//  {
+//    this.mLoginManager.asynSendPtTokenRequest();
+//  }
 
   public Application getApplication()
   {
     return this.mApplication;
   }
 
-  public void newLoginManager()
-  {
-    if (this.mLoginManager == null)
-      this.mLoginManager = new LoginManager(this.mApplication);
-  }
+//  public void newLoginManager()
+//  {
+//    if (this.mLoginManager == null)
+//      this.mLoginManager = new LoginManager(this.mApplication);
+//  }
 
   public String version()
   {
@@ -78,7 +76,3 @@ public class CoreApplication
   }
 }
 
-/* Location:           D:\software\onekey-decompile-apk好用版本\pandalive_1.0.0.1097.apk.jar
- * Qualified Name:     com.panda.videolivecore.CoreApplication
- * JD-Core Version:    0.6.1
- */

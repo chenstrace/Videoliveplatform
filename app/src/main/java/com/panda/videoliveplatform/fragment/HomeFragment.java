@@ -117,7 +117,8 @@ public class HomeFragment extends BaseFragment {
     }
 
     protected void loadSliderData() {
-        executeRequest(new GsonRequest(getSliderUrl(), SliderItemInfo.ResponseData.class, new Response.Listener<SliderItemInfo.ResponseData>() {
+        String url = getSliderUrl();
+        executeRequest(new GsonRequest(url, SliderItemInfo.ResponseData.class, new Response.Listener<SliderItemInfo.ResponseData>() {
 
 
             public void onResponse(SliderItemInfo.ResponseData paramAnonymousResponseData) {
@@ -161,7 +162,7 @@ public class HomeFragment extends BaseFragment {
 
     protected boolean reLoadData() {
         loadSliderData();
-        loadMultiCateData();
+        //loadMultiCateData();
         return true;
     }
 

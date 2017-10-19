@@ -16,6 +16,8 @@ import android.os.Process;
 //import com.panda.videolivecore.utils.LogUtils;
 //import com.sina.weibo.sdk.utils.LogUtil;
 //import com.umeng.message.PushAgent;
+import com.panda.videolivecore.CoreApplication;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class MyApplication extends Application {
 
     public MyApplication() {
         application = this;
-        //CoreApplication.makeInstance(this);
+        CoreApplication.makeInstance(this);
     }
 
     private void GetVersion() {

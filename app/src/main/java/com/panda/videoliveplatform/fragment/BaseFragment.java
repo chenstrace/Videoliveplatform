@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import com.android.volley.Request;
 import com.panda.videoliveplatform.R;
-//import com.panda.videolivecore.data.RequestManager;
+import com.panda.videolivecore.data.RequestManager;
 
 public abstract class BaseFragment extends Fragment
 {
@@ -15,7 +15,7 @@ public abstract class BaseFragment extends Fragment
 
   protected void executeRequest(Request paramRequest)
   {
-  //  RequestManager.addRequest(paramRequest, this);
+    RequestManager.addRequest(paramRequest, this);
   }
 
   protected void initLoadingView(View paramView)
@@ -59,7 +59,7 @@ public abstract class BaseFragment extends Fragment
   public void onDestroy()
   {
     super.onDestroy();
-    //RequestManager.cancelAll(this);
+    RequestManager.cancelAll(this);
   }
 
   protected abstract boolean reLoadData();
@@ -72,7 +72,3 @@ public abstract class BaseFragment extends Fragment
   }
 }
 
-/* Location:           D:\software\onekey-decompile-apk好用版本\pandalive_1.0.0.1097.apk.jar
- * Qualified Name:     com.panda.videoliveplatform.fragment.BaseFragment
- * JD-Core Version:    0.6.1
- */

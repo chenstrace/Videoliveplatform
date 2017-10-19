@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:orientation="vertical" android:background="@color/fragment_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <com.handmark.pulltorefresh.library.PullToRefreshListView android:id="@id/livelist" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="@null" android:dividerHeight="0.0dip" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" ptr:ptrHeaderTextColor="#ff000000" xmlns:ptr="http://schemas.android.com/apk/res-auto" />
-    <include android:id="@id/loadview" android:layout_width="fill_parent" android:layout_height="fill_parent" layout="@layout/layout_loading" />
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/fragment_bg"
+    android:orientation="vertical">
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@id/livelist"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:divider="@null"
+        android:dividerHeight="0.0dip"
+        ptr:ptrHeaderTextColor="#ff000000" />
+
+    <include
+        android:id="@id/loadview"
+        layout="@layout/layout_loading"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 </FrameLayout>

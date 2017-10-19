@@ -68,6 +68,7 @@ public class HttpRequest {
         } catch (Exception localException) {
 
         }
+        return null;
     }
 
 
@@ -268,11 +269,11 @@ public class HttpRequest {
     }
 
     //public static void setPrivateHeader(HttpURLConnection paramHttpURLConnection) {
-      //  paramHttpURLConnection.setRequestProperty(HTTP_PRIVATE_HEADER_KEY, HTTP_PRIVATE_HEADER_VALUE);
+    //  paramHttpURLConnection.setRequestProperty(HTTP_PRIVATE_HEADER_KEY, HTTP_PRIVATE_HEADER_VALUE);
     //}
 
     //public static void setPrivateHeader(HttpGet paramHttpGet) {
-        //paramHttpGet.setHeader(HTTP_PRIVATE_HEADER_KEY, HTTP_PRIVATE_HEADER_VALUE);
+    //paramHttpGet.setHeader(HTTP_PRIVATE_HEADER_KEY, HTTP_PRIVATE_HEADER_VALUE);
     //}
 
     public void post(String paramString1, String paramString2, String paramString3) {
@@ -308,7 +309,7 @@ public class HttpRequest {
         }
 
         protected HttpRequest.AsyncTaskHttpResult doInBackground(String[] paramArrayOfString) {
-
+            return new HttpRequest.AsyncTaskHttpResult(false, "", "");
 //      String str1 = paramArrayOfString[0];
 //      String str2 = paramArrayOfString[1];
 //      String str3 = paramArrayOfString[2];
@@ -353,13 +354,8 @@ public class HttpRequest {
         public AsyncTaskHttpResult(boolean paramString1, String paramString2, String arg4) {
             this.m_bResult = paramString1;
             this.m_strResonse = paramString2;
-            Object localObject;
-            this.m_strContext = localObject;
+            this.m_strContext = arg4;
         }
     }
 }
 
-/* Location:           D:\software\onekey-decompile-apk好用版本\pandalive_1.0.0.1097.apk.jar
- * Qualified Name:     com.panda.videolivecore.net.http.HttpRequest
- * JD-Core Version:    0.6.1
- */

@@ -1,8 +1,8 @@
 package com.panda.videolivecore.utils;
 
 import com.panda.videolivecore.CoreApplication;
-import com.panda.videolivecore.net.info.PtTokenInfo;
-import com.panda.videolivecore.network.LoginManager;
+//import com.panda.videolivecore.net.info.PtTokenInfo;
+//import com.panda.videolivecore.network.LoginManager;
 import java.net.HttpURLConnection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -36,8 +36,7 @@ public class CookieContiner
     }
     finally
     {
-      localObject = finally;
-      throw localObject;
+
     }
   }
 
@@ -46,12 +45,10 @@ public class CookieContiner
     try
     {
       mPtTokenContiner.clear();
-      return;
     }
     finally
     {
-      localObject = finally;
-      throw localObject;
+
     }
   }
 
@@ -71,8 +68,7 @@ public class CookieContiner
     }
     finally
     {
-      localObject = finally;
-      throw localObject;
+
     }
   }
 
@@ -84,14 +80,12 @@ public class CookieContiner
       if (!str.isEmpty())
       {
         paramHttpURLConnection.setRequestProperty(COOKIE_NAME, str);
-        bool = true;
-        return bool;
       }
-      boolean bool = false;
     }
     finally
     {
     }
+    return true;
   }
 
   public static boolean fillCookieHeaders(HttpGet paramHttpGet)
@@ -102,14 +96,14 @@ public class CookieContiner
       if (!str.isEmpty())
       {
         paramHttpGet.setHeader(COOKIE_NAME, str);
-        bool = true;
-        return bool;
+
       }
-      boolean bool = false;
+
     }
     finally
     {
     }
+    return true;
   }
 
   public static void fillTokenHeaders(HttpURLConnection paramHttpURLConnection)
@@ -161,8 +155,7 @@ public class CookieContiner
     }
     finally
     {
-      localObject = finally;
-      throw localObject;
+
     }
   }
 
@@ -186,8 +179,7 @@ public class CookieContiner
     }
     finally
     {
-      localObject = finally;
-      throw localObject;
+
     }
   }
 
@@ -205,12 +197,11 @@ public class CookieContiner
         String str = (String)localObject1 + (String)localEntry.getKey() + "=" + (String)localEntry.getValue();
         localObject1 = str;
       }
-      return localObject1;
+      return (String)localObject1;
     }
     finally
     {
-      localObject2 = finally;
-      throw localObject2;
+
     }
   }
 
@@ -224,8 +215,7 @@ public class CookieContiner
     }
     finally
     {
-      localObject = finally;
-      throw localObject;
+
     }
   }
 
@@ -238,8 +228,7 @@ public class CookieContiner
     }
     finally
     {
-      localObject = finally;
-      throw localObject;
+
     }
   }
 
@@ -252,8 +241,7 @@ public class CookieContiner
     }
     finally
     {
-      localObject = finally;
-      throw localObject;
+
     }
   }
 
@@ -271,27 +259,29 @@ public class CookieContiner
         String str = (String)localObject1 + (String)localEntry.getKey() + "=" + (String)localEntry.getValue();
         localObject1 = str;
       }
-      return localObject1;
+      return (String) localObject1;
     }
     finally
     {
-      localObject2 = finally;
-      throw localObject2;
+
     }
   }
 
   public static boolean isLogin()
   {
-    try
-    {
-      boolean bool = CoreApplication.getInstance().GetLoginManager().IsLogin();
-      return bool;
-    }
-    finally
-    {
-      localObject = finally;
-      throw localObject;
-    }
+
+    return false;
+//    try
+//    {
+//      boolean bool = CoreApplication.getInstance().GetLoginManager().IsLogin();
+//      return bool;
+//    }
+//    finally
+//    {
+//
+//    }
+
+
   }
 
   public static boolean setCookies(HttpResponse paramHttpResponse)
@@ -303,21 +293,19 @@ public class CookieContiner
     }
     finally
     {
-      localObject = finally;
-      throw localObject;
+
     }
   }
 
   public static boolean setCookies(CookieStore paramCookieStore)
   {
-    boolean bool;
     try
     {
       List localList = paramCookieStore.getCookies();
       if (localList != null)
       {
         Iterator localIterator = localList.iterator();
-        if (localIterator.hasNext())
+        while (localIterator.hasNext())
         {
           Cookie localCookie = (Cookie)localIterator.next();
           String str1 = localCookie.getName();
@@ -329,19 +317,16 @@ public class CookieContiner
     finally
     {
     }
-    while (true)
-    {
-      return bool;
-      bool = false;
-    }
+    return true;
   }
 
   public static boolean setCookies(Header[] paramArrayOfHeader)
   {
     boolean bool = false;
-    int i;
-    if (paramArrayOfHeader != null)
-      i = 0;
+    int i=0;
+    if (paramArrayOfHeader == null)
+      return false;
+
     try
     {
       while (i < paramArrayOfHeader.length)
@@ -367,11 +352,11 @@ public class CookieContiner
     }
     finally
     {
-      localObject = finally;
-      throw localObject;
+
     }
   }
 
+  /*
   public static void setPtToken(PtTokenInfo paramPtTokenInfo)
   {
     try
@@ -382,13 +367,8 @@ public class CookieContiner
     }
     finally
     {
-      localObject = finally;
-      throw localObject;
+
     }
   }
+  */
 }
-
-/* Location:           D:\software\onekey-decompile-apk好用版本\pandalive_1.0.0.1097.apk.jar
- * Qualified Name:     com.panda.videolivecore.utils.CookieContiner
- * JD-Core Version:    0.6.1
- */

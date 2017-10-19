@@ -2,7 +2,7 @@ package com.panda.videolivecore.net;
 
 import com.panda.videolivecore.CoreApplication;
 import com.panda.videolivecore.net.http.HttpRequest;
-import com.panda.videolivecore.network.LoginManager;
+//import com.panda.videolivecore.network.LoginManager;
 import java.util.UUID;
 
 public class UrlConst
