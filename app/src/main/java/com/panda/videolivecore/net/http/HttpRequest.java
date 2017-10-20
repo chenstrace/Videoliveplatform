@@ -1,10 +1,10 @@
 package com.panda.videolivecore.net.http;
 
 import android.os.AsyncTask;
-
 import com.panda.videolivecore.CoreApplication;
 import com.panda.videolivecore.utils.CookieContiner;
-
+//import com.umeng.message.proguard.C0035k;
+//import com.umeng.message.proguard.e;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -15,12 +15,10 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-
-//import org.apache.http.HttpResponse;
-//import org.apache.http.StatusLine;
-//import org.apache.http.client.methods.HttpGet;
-//import org.apache.http.impl.client.DefaultHttpClient;
-//import org.apache.http.util.EntityUtils;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 
 public class HttpRequest {
     public static String CHARSET_NAME_BYTES = "ISO-8859-1";
@@ -34,315 +32,33 @@ public class HttpRequest {
     private static String REQUESTTYPE_POSTFILE = "postfile";
     private IHttpRequestEvent m_event = null;
 
-    public HttpRequest(IHttpRequestEvent paramIHttpRequestEvent) {
-        this.m_event = paramIHttpRequestEvent;
-    }
-
-    public static String Bytes2String(byte[] paramArrayOfByte) {
-        try {
-            if (paramArrayOfByte.length <= 4194304) {
-                String str = new String(paramArrayOfByte, CHARSET_NAME_BYTES);
-                return str;
-            }
-        } catch (Exception localException) {
-
-        }
-        return "";
-    }
-
-    public static byte[] ReadFileData(String paramString) {
-        try {
-            File localFile = new File(paramString);
-            byte[] arrayOfByte = null;
-
-            if (localFile != null) {
-                boolean bool = localFile.exists();
-                if (bool) {
-                    FileInputStream localFileInputStream = new FileInputStream(localFile);
-                    arrayOfByte = new byte[localFileInputStream.available()];
-                    localFileInputStream.read(arrayOfByte);
-                    localFileInputStream.close();
-                }
-            }
-            return arrayOfByte;
-        } catch (Exception localException) {
-
-        }
-        return null;
-    }
-
-
-    public static byte[] String2Bytes(String paramString) {
-        try {
-            byte[] arrayOfByte2 = paramString.getBytes(CHARSET_NAME_BYTES);
-            return arrayOfByte2;
-        } catch (Exception localException) {
-            while (true) {
-                localException.printStackTrace();
-                byte[] arrayOfByte1 = null;
-            }
-        }
-    }
-
-    public static String URLAppendVersionPlat(String paramString, boolean paramBoolean) {
-        return paramString;
-//    String str2;
-//    String str3;
-//    if (!paramString.isEmpty())
-//    {
-//      if (paramBoolean)
-//      {
-//        str2 = "?";
-//        str3 = "" + paramString + str2 + "__version=" + CoreApplication.getInstance().version() + "&__plat=android";
-//        String str4 = CookieContiner.getToken();
-//        if (!str4.isEmpty())
-//          str3 = str3 + "&" + str4;
-//      }
-//      for (String str1 = str3; ; str1 = "")
-//      {
-//        return str1;
-//        str2 = "&";
-//        break;
-//      }
-//    }
-
-    }
-
-    public static String URLAppendVersionPlatNoToken(String paramString, boolean paramBoolean) {
-        return paramString;
-//    String str2;
-//    if (!paramString.isEmpty())
-//      if (paramBoolean)
-//        str2 = "?";
-//    for (String str1 = "" + paramString + str2 + "__version=" + CoreApplication.getInstance().version() + "&__plat=android"; ; str1 = "")
-//    {
-//      return str1;
-//      str2 = "&";
-//      break;
-//    }
-    }
-
-    public static String URLEncoder(String paramString) {
-        try {
-            return URLEncoder.encode(paramString, CHARSET_NAME_UTF8);
-
-
-        } catch (Exception localException) {
-
-//        localException.printStackTrace();
-        }
-        return "";
-    }
-
-    public static boolean getResponse(HttpURLConnection paramHttpURLConnection, ByteArrayOutputStream paramByteArrayOutputStream) {
-        boolean bool = false;
-        BufferedInputStream localBufferedInputStream;
-        try {
-            int i = paramHttpURLConnection.getResponseCode();
-            bool = false;
-            if (i == 200) {
-                localBufferedInputStream = new BufferedInputStream(paramHttpURLConnection.getInputStream());
-                byte[] arrayOfByte = new byte[1024];
-                while (true) {
-                    int j = localBufferedInputStream.read(arrayOfByte);
-                    if (j == -1)
-                        break;
-                    paramByteArrayOutputStream.write(arrayOfByte, 0, j);
-                }
-                localBufferedInputStream.close();
-                return true;
-            }
-        } catch (Exception localException) {
-            localException.printStackTrace();
-        }
-        return false;
-
-
-    }
-
-    public static boolean postSync(String paramString1, String paramString2, ByteArrayOutputStream paramByteArrayOutputStream) {
-        return false;
-//    HttpURLConnection localHttpURLConnection = null;
-//    try
-//    {
-//      localHttpURLConnection = (HttpURLConnection)new URL(paramString1).openConnection();
-//      CookieContiner.fillCookieHeaders(localHttpURLConnection);
-//      setPrivateHeader(localHttpURLConnection);
-//      localHttpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-//      localHttpURLConnection.setRequestMethod("POST");
-//      localHttpURLConnection.setDoOutput(true);
-//      localHttpURLConnection.setChunkedStreamingMode(0);
-//      localHttpURLConnection.connect();
-//      byte[] arrayOfByte = ReadFileData(paramString2);
-//      if (arrayOfByte != null)
-//      {
-//        BufferedOutputStream localBufferedOutputStream = new BufferedOutputStream(localHttpURLConnection.getOutputStream());
-//        localBufferedOutputStream.write(arrayOfByte);
-//        localBufferedOutputStream.flush();
-//        localBufferedOutputStream.close();
-//      }
-//      boolean bool2 = getResponse(localHttpURLConnection, paramByteArrayOutputStream);
-//      bool1 = bool2;
-//      return bool1;
-//    }
-//    catch (Exception localException)
-//    {
-//      while (true)
-//      {
-//        localException.printStackTrace();
-//        localHttpURLConnection.disconnect();
-//        boolean bool1 = false;
-//      }
-//    }
-//    finally
-//    {
-//      localHttpURLConnection.disconnect();
-//    }
-    }
-
-    public static boolean sendSync(String paramString, ByteArrayOutputStream paramByteArrayOutputStream) {
-        return false;
-//    HttpURLConnection localHttpURLConnection = null;
-//    try
-//    {
-//      localHttpURLConnection = (HttpURLConnection)new URL(paramString).openConnection();
-//      CookieContiner.fillCookieHeaders(localHttpURLConnection);
-//      setPrivateHeader(localHttpURLConnection);
-//      localHttpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-//      localHttpURLConnection.connect();
-//      int i = localHttpURLConnection.getContentLength();
-//      int j = MAX_HEADER_CONTENT_SIZE;
-//      bool1 = false;
-//      if (i <= j)
-//      {
-//        boolean bool2 = getResponse(localHttpURLConnection, paramByteArrayOutputStream);
-//        bool1 = bool2;
-//      }
-//      return bool1;
-//    }
-//    catch (Exception localException)
-//    {
-//      while (true)
-//      {
-//        localException.printStackTrace();
-//        boolean bool1 = false;
-//        if (localHttpURLConnection != null)
-//        {
-//          localHttpURLConnection.disconnect();
-//          bool1 = false;
-//        }
-//      }
-//    }
-//    finally
-//    {
-//      if (localHttpURLConnection != null)
-//        localHttpURLConnection.disconnect();
-//    }
-    }
-
-    public static boolean sendSync(String paramString, StringBuffer paramStringBuffer) {
-        return false;
-//    try
-//    {
-//      HttpGet localHttpGet = new HttpGet(paramString);
-//      DefaultHttpClient localDefaultHttpClient = new DefaultHttpClient();
-//      CookieContiner.fillCookieHeaders(localHttpGet);
-//      setPrivateHeader(localHttpGet);
-//      HttpResponse localHttpResponse = localDefaultHttpClient.execute(localHttpGet);
-//      int i = localHttpResponse.getStatusLine().getStatusCode();
-//      bool = false;
-//      if (i == 200)
-//      {
-//        paramStringBuffer.append(EntityUtils.toString(localHttpResponse.getEntity(), "utf-8"));
-//        bool = true;
-//      }
-//      return bool;
-//    }
-//    catch (Exception localException)
-//    {
-//      while (true)
-//      {
-//        localException.printStackTrace();
-//        boolean bool = false;
-//      }
-//    }
-    }
-
-    //public static void setPrivateHeader(HttpURLConnection paramHttpURLConnection) {
-    //  paramHttpURLConnection.setRequestProperty(HTTP_PRIVATE_HEADER_KEY, HTTP_PRIVATE_HEADER_VALUE);
-    //}
-
-    //public static void setPrivateHeader(HttpGet paramHttpGet) {
-    //paramHttpGet.setHeader(HTTP_PRIVATE_HEADER_KEY, HTTP_PRIVATE_HEADER_VALUE);
-    //}
-
-    public void post(String paramString1, String paramString2, String paramString3) {
-        try {
-            AsyncTaskHttpRequest localAsyncTaskHttpRequest = new AsyncTaskHttpRequest();
-            String[] arrayOfString = new String[4];
-            arrayOfString[0] = paramString3;
-            arrayOfString[1] = REQUESTTYPE_POSTFILE;
-            arrayOfString[2] = paramString1;
-            arrayOfString[3] = paramString2;
-            localAsyncTaskHttpRequest.execute(arrayOfString);
-            return;
-        } catch (Exception localException) {
-            while (true)
-                localException.printStackTrace();
-        }
-    }
-
-    public void send(String paramString1, boolean paramBoolean, String paramString2) {
-        if (paramBoolean) ;
-        try {
-            for (String str = REQUESTTYPE_GET; ; str = REQUESTTYPE_GETBIN) {
-                new AsyncTaskHttpRequest().execute(new String[]{paramString2, str, paramString1, ""});
-                break;
-            }
-        } catch (Exception localException) {
-            localException.printStackTrace();
-        }
-    }
-
-    class AsyncTaskHttpRequest extends AsyncTask<String, Integer, HttpRequest.AsyncTaskHttpResult> {
+    class AsyncTaskHttpRequest extends AsyncTask<String, Integer, AsyncTaskHttpResult> {
         AsyncTaskHttpRequest() {
         }
 
-        protected HttpRequest.AsyncTaskHttpResult doInBackground(String[] paramArrayOfString) {
-            return new HttpRequest.AsyncTaskHttpResult(false, "", "");
-//      String str1 = paramArrayOfString[0];
-//      String str2 = paramArrayOfString[1];
-//      String str3 = paramArrayOfString[2];
-//      String str4 = paramArrayOfString[3];
-//      HttpRequest.AsyncTaskHttpResult localAsyncTaskHttpResult;
-//      if (HttpRequest.REQUESTTYPE_GETBIN == str2)
-//      {
-//        ByteArrayOutputStream localByteArrayOutputStream1 = new ByteArrayOutputStream();
-//        boolean bool1 = HttpRequest.sendSync(str3, localByteArrayOutputStream1);
-//        localAsyncTaskHttpResult = new HttpRequest.AsyncTaskHttpResult(HttpRequest.this, bool1, HttpRequest.Bytes2String(localByteArrayOutputStream1.toByteArray()), str1);
-//      }
-//      while (true)
-//      {
-//        return localAsyncTaskHttpResult;
-//        if (HttpRequest.REQUESTTYPE_POSTFILE == str2)
-//        {
-//          ByteArrayOutputStream localByteArrayOutputStream2 = new ByteArrayOutputStream();
-//          boolean bool2 = HttpRequest.postSync(str3, str4, localByteArrayOutputStream2);
-//          localAsyncTaskHttpResult = new HttpRequest.AsyncTaskHttpResult(HttpRequest.this, bool2, HttpRequest.Bytes2String(localByteArrayOutputStream2.toByteArray()), str1);
-//        }
-//        else
-//        {
-//          StringBuffer localStringBuffer = new StringBuffer();
-//          boolean bool3 = HttpRequest.sendSync(str3, localStringBuffer);
-//          localAsyncTaskHttpResult = new HttpRequest.AsyncTaskHttpResult(HttpRequest.this, bool3, localStringBuffer.toString(), str1);
-//        }
-//      }
+        protected AsyncTaskHttpResult doInBackground(String... params) {
+            String strContext = params[0];
+            String strType = params[1];
+            String strUrl = params[2];
+            String strPostFilePath = params[3];
+            ByteArrayOutputStream buffer;
+            if (HttpRequest.REQUESTTYPE_GETBIN == strType) {
+                buffer = new ByteArrayOutputStream();
+                return new AsyncTaskHttpResult(HttpRequest.sendSync(strUrl, buffer), HttpRequest.Bytes2String(buffer.toByteArray()), strContext);
+            } else if (HttpRequest.REQUESTTYPE_POSTFILE == strType) {
+                buffer = new ByteArrayOutputStream();
+                return new AsyncTaskHttpResult(HttpRequest.postSync(strUrl, strPostFilePath, buffer), HttpRequest.Bytes2String(buffer.toByteArray()), strContext);
+            } else {
+                StringBuffer buffer2 = new StringBuffer();
+                return new AsyncTaskHttpResult(HttpRequest.sendSync(strUrl, buffer2), buffer2.toString(), strContext);
+            }
         }
 
-        protected void onPostExecute(HttpRequest.AsyncTaskHttpResult paramAsyncTaskHttpResult) {
-            super.onPostExecute(paramAsyncTaskHttpResult);
-            if (HttpRequest.this.m_event != null)
-                HttpRequest.this.m_event.onResponse(paramAsyncTaskHttpResult.m_bResult, paramAsyncTaskHttpResult.m_strResonse, paramAsyncTaskHttpResult.m_strContext);
+        protected void onPostExecute(AsyncTaskHttpResult result) {
+            super.onPostExecute(result);
+            if (HttpRequest.this.m_event != null) {
+                HttpRequest.this.m_event.onResponse(result.m_bResult, result.m_strResonse, result.m_strContext);
+            }
         }
     }
 
@@ -351,11 +67,211 @@ public class HttpRequest {
         public String m_strContext = null;
         public String m_strResonse = null;
 
-        public AsyncTaskHttpResult(boolean paramString1, String paramString2, String arg4) {
-            this.m_bResult = paramString1;
-            this.m_strResonse = paramString2;
-            this.m_strContext = arg4;
+        public AsyncTaskHttpResult(boolean bResult, String strReponse, String strContext) {
+            this.m_bResult = bResult;
+            this.m_strResonse = strReponse;
+            this.m_strContext = strContext;
         }
     }
-}
 
+    public HttpRequest(IHttpRequestEvent event) {
+        this.m_event = event;
+    }
+
+    public void send(String strUrl, boolean bIsNormalGet, String strContext) {
+        String strType;
+        if (bIsNormalGet) {
+            try {
+                strType = REQUESTTYPE_GET;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return;
+            }
+        }
+        strType = REQUESTTYPE_GETBIN;
+        new AsyncTaskHttpRequest().execute(new String[]{strContext, strType, strUrl, ""});
+    }
+
+    public void post(String strUrl, String strPostFilePath, String strContext) {
+        try {
+            new AsyncTaskHttpRequest().execute(new String[]{strContext, REQUESTTYPE_POSTFILE, strUrl, strPostFilePath});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean sendSync(String strUrl, StringBuffer buffer) {
+        try {
+            HttpGet getMethod = new HttpGet(strUrl);
+            DefaultHttpClient httpClient = new DefaultHttpClient();
+            CookieContiner.fillCookieHeaders(getMethod);
+            setPrivateHeader(getMethod);
+            HttpResponse response = httpClient.execute(getMethod);
+            if (response.getStatusLine().getStatusCode() != 200) {
+                return false;
+            }
+            buffer.append(EntityUtils.toString(response.getEntity(), "utf-8"));
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean sendSync(String strUrl, ByteArrayOutputStream baos) {
+        boolean bReturn = false;
+        HttpURLConnection urlConnection = null;
+        try {
+            urlConnection = (HttpURLConnection) new URL(strUrl).openConnection();
+            CookieContiner.fillCookieHeaders(urlConnection);
+            setPrivateHeader(urlConnection);
+            urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+            urlConnection.connect();
+            if (urlConnection.getContentLength() <= MAX_HEADER_CONTENT_SIZE) {
+                bReturn = getResponse(urlConnection, baos);
+            }
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+        } catch (Throwable th) {
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+        }
+        return bReturn;
+    }
+
+    public static boolean postSync(String strUrl, String strPostFilePath, ByteArrayOutputStream baos) {
+        boolean bReturn = false;
+        HttpURLConnection urlConnection = null;
+        try {
+            urlConnection = (HttpURLConnection) new URL(strUrl).openConnection();
+            CookieContiner.fillCookieHeaders(urlConnection);
+            setPrivateHeader(urlConnection);
+            urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setDoOutput(true);
+            urlConnection.setChunkedStreamingMode(0);
+            urlConnection.connect();
+            byte[] postData = ReadFileData(strPostFilePath);
+            if (postData != null) {
+                OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
+                out.write(postData);
+                out.flush();
+                out.close();
+            }
+            bReturn = getResponse(urlConnection, baos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            urlConnection.disconnect();
+        }
+        return bReturn;
+    }
+
+    public static boolean getResponse(HttpURLConnection urlConnection, ByteArrayOutputStream baos) {
+        try {
+            if (urlConnection.getResponseCode() != 200) {
+                return false;
+            }
+            InputStream inStream = new BufferedInputStream(urlConnection.getInputStream());
+            byte[] buffer = new byte[1024];
+            while (true) {
+                int len = inStream.read(buffer);
+                if (len != -1) {
+                    baos.write(buffer, 0, len);
+                } else {
+                    inStream.close();
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static void setPrivateHeader(HttpGet getMethod) {
+        getMethod.setHeader(HTTP_PRIVATE_HEADER_KEY, HTTP_PRIVATE_HEADER_VALUE);
+    }
+
+    public static void setPrivateHeader(HttpURLConnection urlConnection) {
+        urlConnection.setRequestProperty(HTTP_PRIVATE_HEADER_KEY, HTTP_PRIVATE_HEADER_VALUE);
+    }
+
+    public static byte[] String2Bytes(String strData) {
+        byte[] data = null;
+        try {
+            data = strData.getBytes(CHARSET_NAME_BYTES);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    public static String Bytes2String(byte[] data) {
+        String strContent = "";
+        try {
+            if (data.length <= 4194304) {
+                return new String(data, CHARSET_NAME_BYTES);
+            }
+            return strContent;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return strContent;
+        }
+    }
+
+    public static String URLEncoder(String strData) {
+        String strReturn = "";
+        try {
+            strReturn = URLEncoder.encode(strData, CHARSET_NAME_UTF8);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return strReturn;
+    }
+
+    public static byte[] ReadFileData(String strFilePath) {
+        try {
+            File file = new File(strFilePath);
+            if (file == null || !file.exists()) {
+                return null;
+            }
+            InputStream in = new FileInputStream(file);
+            byte[] buffer = new byte[in.available()];
+            in.read(buffer);
+            in.close();
+            return buffer;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static String URLAppendVersionPlat(String strUrl, boolean bFirstParam) {
+        String strReturn = "";
+        if (strUrl.isEmpty()) {
+            return strReturn;
+        }
+        strReturn = strReturn + strUrl + (bFirstParam ? "?" : "&") + "__version=" + CoreApplication.getInstance().version() + "&__plat=android";
+        String strToken = CookieContiner.getToken();
+        if (!strToken.isEmpty()) {
+            strReturn = strReturn + "&" + strToken;
+        }
+        return strReturn;
+    }
+
+    public static String URLAppendVersionPlatNoToken(String strUrl, boolean bFirstParam) {
+        String strReturn = "";
+        if (strUrl.isEmpty()) {
+            return strReturn;
+        }
+        return strReturn + strUrl + (bFirstParam ? "?" : "&") + "__version=" + CoreApplication.getInstance().version() + "&__plat=android";
+    }
+}
