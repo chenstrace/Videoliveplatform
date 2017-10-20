@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.panda.videoliveplatform"
-    platformBuildVersionCode="19"
-    platformBuildVersionName="4.4.2-1456859"
     android:versionCode="1097"
     android:versionName="1.0.0.1097">
+
+
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -28,15 +28,12 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar">
-
-
-<activity
-    android:name="com.panda.videoliveplatform.activity.MainFragmentActivity"
-    android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|smallestScreenSize"
-    android:label="@string/title_activity_main_fragment"
-    android:launchMode="singleTask"
-    android:screenOrientation="portrait" />
-
+        <activity
+            android:name="com.panda.videoliveplatform.activity.MainFragmentActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|smallestScreenSize"
+            android:label="@string/title_activity_main_fragment"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.panda.videoliveplatform.activity.SubLiveActivity"
             android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|smallestScreenSize"
@@ -50,7 +47,7 @@
             android:name="com.panda.videoliveplatform.activity.WelcomeActivity"
             android:label="@string/title_activity_welcome"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            android:theme="@*android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -60,7 +57,7 @@
             android:name="com.panda.videoliveplatform.activity.LoginActivity"
             android:label="@string/title_activity_Login_activity"
             android:screenOrientation="portrait" />
-        >
+        &gt;
         <activity
             android:name="com.panda.videoliveplatform.activity.MobileWebRegisterActivity"
             android:label="@string/title_activity_register_activity"
@@ -115,19 +112,20 @@
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="guanwang" />
-        <!--
-        <service android:name="com.umeng.update.net.DownloadingService" android:process=":DownloadingService" />
-        <activity android:theme="@android:style/Theme.Translucent.NoTitleBar" android:name="com.umeng.update.UpdateDialogActivity" />
+
+        <service
+            android:name="com.umeng.update.net.DownloadingService"
+            android:process=":DownloadingService" />
+
+        <activity
+            android:name="com.umeng.update.UpdateDialogActivity"
+            android:theme="@*android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name="com.umeng.fb.ConversationActivity" />
-        -->
-
-        <!--
-
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@*android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
@@ -141,102 +139,100 @@
                 <data android:scheme="tencent1104450484" />
             </intent-filter>
         </activity>
-        -->
-        <!--
 
-                <receiver
-                    android:name="com.umeng.message.NotificationProxyBroadcastReceiver"
-                    android:exported="false" />
-                <receiver
-                    android:name="com.umeng.message.SystemReceiver"
-                    android:process=":push">
-                    <intent-filter>
-                        <action android:name="android.intent.action.BOOT_COMPLETED" />
-                    </intent-filter>
-                    <intent-filter>
-                        <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                    </intent-filter>
-                    <intent-filter>
-                        <action android:name="android.intent.action.PACKAGE_REMOVED" />
-                        <data android:scheme="package" />
-                    </intent-filter>
-                </receiver>
-                <receiver
-                    android:name="com.umeng.message.MessageReceiver"
-                    android:process=":push">
-                    <intent-filter>
-                        <action android:name="org.agoo.android.intent.action.RECEIVE" />
-                    </intent-filter>
-                </receiver>
-                <receiver
-                    android:name="com.umeng.message.ElectionReceiver"
-                    android:process=":push">
-                    <intent-filter>
-                        <action android:name="org.agoo.android.intent.action.ELECTION_RESULT_V4" />
-                        <category android:name="umeng" />
-                    </intent-filter>
-                </receiver>
-                <receiver
-                    android:name="com.umeng.message.RegistrationReceiver"
-                    android:exported="false">
-                    <intent-filter>
-                        <action android:name="com.panda.videoliveplatform.intent.action.COMMAND" />
-                    </intent-filter>
-                </receiver>
-                <receiver android:name="com.umeng.message.UmengMessageBootReceiver">
-                    <intent-filter>
-                        <action android:name="android.intent.action.BOOT_COMPLETED" />
-                    </intent-filter>
-                </receiver>
+        <receiver
+            android:name="com.umeng.message.NotificationProxyBroadcastReceiver"
+            android:exported="false" />
+        <receiver
+            android:name="com.umeng.message.SystemReceiver"
+            android:process=":push">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.umeng.message.MessageReceiver"
+            android:process=":push">
+            <intent-filter>
+                <action android:name="org.agoo.android.intent.action.RECEIVE" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.umeng.message.ElectionReceiver"
+            android:process=":push">
+            <intent-filter>
+                <action android:name="org.agoo.android.intent.action.ELECTION_RESULT_V4" />
+                <category android:name="umeng" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.umeng.message.RegistrationReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.panda.videoliveplatform.intent.action.COMMAND" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.umeng.message.UmengMessageBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
-                <service
-                    android:name="com.umeng.message.UmengService"
-                    android:exported="true"
-                    android:label="PushService"
-                    android:process=":push">
-                    <intent-filter>
-                        <action android:name="com.panda.videoliveplatform.intent.action.START" />
-                    </intent-filter>
-                    <intent-filter>
-                        <action android:name="com.panda.videoliveplatform.intent.action.COCKROACH" />
-                    </intent-filter>
-                    <intent-filter>
-                        <action android:name="org.agoo.android.intent.action.PING_V4" />
-                        <category android:name="umeng" />
-                    </intent-filter>
-                </service>
-                <service
-                    android:name="com.umeng.message.UmengIntentService"
-                    android:process=":push" />
-                <service
-                    android:name="com.umeng.message.UmengMessageIntentReceiverService"
-                    android:exported="true"
-                    android:process=":push">
-                    <intent-filter>
-                        <action android:name="org.android.agoo.client.MessageReceiverService" />
-                    </intent-filter>
-                    <intent-filter>
-                        <action android:name="org.android.agoo.client.ElectionReceiverService" />
-                    </intent-filter>
-                </service>
-                <service
-                    android:name="com.umeng.message.UmengMessageCallbackHandlerService"
-                    android:exported="false">
-                    <intent-filter>
-                        <action android:name="com.umeng.messge.registercallback.action" />
-                    </intent-filter>
-                    <intent-filter>
-                        <action android:name="com.umeng.message.unregistercallback.action" />
-                    </intent-filter>
-                    <intent-filter>
-                        <action android:name="com.umeng.message.message.handler.action" />
-                    </intent-filter>
-                    <intent-filter>
-                        <action android:name="com.umeng.message.autoupdate.handler.action" />
-                    </intent-filter>
-                </service>
-                <service android:name="com.umeng.message.UmengDownloadResourceService" />
-        -->
+        <service
+            android:name="com.umeng.message.UmengService"
+            android:exported="true"
+            android:label="PushService"
+            android:process=":push">
+            <intent-filter>
+                <action android:name="com.panda.videoliveplatform.intent.action.START" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.panda.videoliveplatform.intent.action.COCKROACH" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.agoo.android.intent.action.PING_V4" />
+                <category android:name="umeng" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.umeng.message.UmengIntentService"
+            android:process=":push" />
+        <service
+            android:name="com.umeng.message.UmengMessageIntentReceiverService"
+            android:exported="true"
+            android:process=":push">
+            <intent-filter>
+                <action android:name="org.android.agoo.client.MessageReceiverService" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.android.agoo.client.ElectionReceiverService" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.umeng.message.UmengMessageCallbackHandlerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.umeng.messge.registercallback.action" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.umeng.message.unregistercallback.action" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.umeng.message.message.handler.action" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.umeng.message.autoupdate.handler.action" />
+            </intent-filter>
+        </service>
+        <service android:name="com.umeng.message.UmengDownloadResourceService" />
+
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
             android:value="517273ca38d9ccbe96e396c96b30ab0a" />

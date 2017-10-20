@@ -163,24 +163,26 @@ public class HomeListAdapter extends BaseAdapter implements OnSliderClickListene
     }
 
     public int getCount() {
-        if(this.mSliderList == null)
-        {
-            return 0;
-        }
+        return 0;
 
-        if(this.mSliderList.size() == 0)
-        {
-            return 0;
-        }
-        if(null == mMutlCateList)
-        {
-            return 0;
-        }
-        if(mMutlCateList.size() == 0)
-        {
-            return 0;
-        }
-        return mMutlCateList.size() + 1;
+//        if(this.mSliderList == null)
+//        {
+//            return 0;
+//        }
+//
+//        if(this.mSliderList.size() == 0)
+//        {
+//            return 0;
+//        }
+//        if(null == mMutlCateList)
+//        {
+//            return 0;
+//        }
+//        if(mMutlCateList.size() == 0)
+//        {
+//            return 0;
+//        }
+//        return mMutlCateList.size() + 1;
 
     }
 
