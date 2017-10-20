@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderLayout.PresetIndicators;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
@@ -23,10 +24,9 @@ import com.panda.videolivecore.view.HomeGridView;
 import com.panda.videoliveplatform.MyApplication;
 import com.panda.videoliveplatform.R;
 import com.panda.videoliveplatform.fragment.HomeFragment.OnHomeFragmentListener;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 
 public class HomeListAdapter extends BaseAdapter implements OnSliderClickListener {
@@ -163,26 +163,22 @@ public class HomeListAdapter extends BaseAdapter implements OnSliderClickListene
     }
 
     public int getCount() {
-        return 0;
+        //这里的逻辑是slider和下面的分类列表都不为0，才能显示首页
+        if (this.mSliderList == null) {
+            return 0;
+        }
 
-//        if(this.mSliderList == null)
-//        {
-//            return 0;
-//        }
-//
-//        if(this.mSliderList.size() == 0)
-//        {
-//            return 0;
-//        }
-//        if(null == mMutlCateList)
-//        {
-//            return 0;
-//        }
-//        if(mMutlCateList.size() == 0)
-//        {
-//            return 0;
-//        }
-//        return mMutlCateList.size() + 1;
+        if (this.mSliderList.size() == 0) {
+            return 0;
+        }
+        if (null == mMutlCateList) {
+            return 0;
+        }
+        if (mMutlCateList.size() == 0) {
+            return 0;
+        }
+        //整个slider算做一个item，下面的每个分类算做一个item，返回是分类的数量加1
+        return mMutlCateList.size() + 1;
 
     }
 

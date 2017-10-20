@@ -114,7 +114,7 @@ public class HomeFragment extends BaseFragment {
 
     protected boolean reLoadData() {
         loadSliderData();
-        //loadMultiCateData();
+        loadMultiCateData();
         return true;
     }
 

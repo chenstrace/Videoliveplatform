@@ -5,6 +5,7 @@ import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.Application;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Process;
+
 import com.panda.videolivecore.CoreApplication;
 //import com.panda.videolivecore.network.LoginManager;
 //import com.panda.videolivecore.setting.SettingStorage;
