@@ -3,72 +3,61 @@ package com.panda.videoliveplatform.fragment;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.View.OnClickListener;
+
 import com.android.volley.Request;
-import com.panda.videoliveplatform.R;
 import com.panda.videolivecore.data.RequestManager;
+import com.panda.videoliveplatform.R;
 
-public abstract class BaseFragment extends Fragment
-{
-  private View mLoadCompeleteNodataView;
-  private View mLoadErrorView;
-  private View mLoadingView;
+public abstract class BaseFragment extends Fragment {
+    private View mLoadCompeleteNodataView;
+    private View mLoadErrorView;
+    private View mLoadingView;
 
-  protected void executeRequest(Request paramRequest)
-  {
-    RequestManager.addRequest(paramRequest, this);
-  }
+    protected abstract boolean reLoadData();
 
-  protected void initLoadingView(View paramView)
-  {
-    this.mLoadingView = paramView.findViewById(R.id.loading);
-    this.mLoadErrorView = paramView.findViewById(R.id.loaderror);
-    this.mLoadCompeleteNodataView = paramView.findViewById(R.id.loadsuccess_nodata);
-    this.mLoadErrorView.setOnClickListener(new View.OnClickListener()
-    {
-      public void onClick(View paramAnonymousView)
-      {
-        BaseFragment.this.mLoadingView.setVisibility(0);
-        BaseFragment.this.mLoadErrorView.setVisibility(8);
-        BaseFragment.this.mLoadCompeleteNodataView.setVisibility(8);
-        BaseFragment.this.reLoadData();
-      }
-    });
-  }
-
-  protected void loadCompelete(int paramInt)
-  {
-    if (paramInt <= 0)
-    {
-      this.mLoadErrorView.setVisibility(8);
-      this.mLoadingView.setVisibility(8);
-      this.mLoadCompeleteNodataView.setVisibility(0);
+    public void onDestroy() {
+        super.onDestroy();
+        RequestManager.cancelAll(this);
     }
-  }
 
-  protected void loadDataError()
-  {
-    this.mLoadErrorView.setVisibility(0);
-    this.mLoadingView.setVisibility(8);
-    this.mLoadCompeleteNodataView.setVisibility(8);
-  }
+    protected void executeRequest(Request request) {
+        RequestManager.addRequest(request, this);
+    }
 
-  protected void loadDataSuccess()
-  {
-  }
+    protected void initLoadingView(View view) {
+        this.mLoadingView = view.findViewById(R.id.loading);
+        this.mLoadErrorView = view.findViewById(R.id.loaderror);
+        this.mLoadCompeleteNodataView = view.findViewById(R.id.loadsuccess_nodata);
+        this.mLoadErrorView.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                BaseFragment.this.mLoadingView.setVisibility(View.VISIBLE);
+                BaseFragment.this.mLoadErrorView.setVisibility(View.GONE);
+                BaseFragment.this.mLoadCompeleteNodataView.setVisibility(View.GONE);
+                BaseFragment.this.reLoadData();
+            }
+        });
+    }
 
-  public void onDestroy()
-  {
-    super.onDestroy();
-    RequestManager.cancelAll(this);
-  }
+    protected void loadDataSuccess() {
+    }
 
-  protected abstract boolean reLoadData();
+    protected void startLoading() {
+        this.mLoadErrorView.setVisibility(8);
+        this.mLoadingView.setVisibility(0);
+        this.mLoadCompeleteNodataView.setVisibility(8);
+    }
 
-  protected void startLoading()
-  {
-    this.mLoadErrorView.setVisibility(8);
-    this.mLoadingView.setVisibility(0);
-    this.mLoadCompeleteNodataView.setVisibility(8);
-  }
+    protected void loadCompelete(int num) {
+        if (num <= 0) {
+            this.mLoadErrorView.setVisibility(8);
+            this.mLoadingView.setVisibility(8);
+            this.mLoadCompeleteNodataView.setVisibility(0);
+        }
+    }
+
+    protected void loadDataError() {
+        this.mLoadErrorView.setVisibility(0);
+        this.mLoadingView.setVisibility(8);
+        this.mLoadCompeleteNodataView.setVisibility(8);
+    }
 }
-

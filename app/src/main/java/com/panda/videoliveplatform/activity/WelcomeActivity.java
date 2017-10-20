@@ -10,33 +10,26 @@ import android.view.MenuItem;
 import com.panda.videoliveplatform.R;
 
 public class WelcomeActivity extends Activity {
-    protected void onCreate(Bundle paramBundle) {
-        super.onCreate(paramBundle);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        new Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-
-                        Intent localIntent = new Intent(WelcomeActivity.this, MainFragmentActivity.class);
-                        WelcomeActivity.this.startActivity(localIntent);
-                        WelcomeActivity.this.finish();
-
-                    }
-
-                }
-                , 2000L);
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                WelcomeActivity.this.startActivity(new Intent(WelcomeActivity.this, MainFragmentActivity.class));
+                WelcomeActivity.this.finish();
+            }
+        }, 2000);
     }
 
-    public boolean onCreateOptionsMenu(Menu paramMenu) {
-        getMenuInflater().inflate(R.menu.menu_welcome, paramMenu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_welcome, menu);
         return true;
     }
 
-
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
-
+        if (item.getItemId() == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

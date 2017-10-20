@@ -1,16 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout android:layout_gravity="center" android:orientation="vertical" android:id="@id/loading" android:layout_width="fill_parent" android:layout_height="fill_parent">
-        <ImageView android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="179.0dip" android:layout_marginBottom="35.0dip" android:src="@drawable/panda1" />
-        <TextView android:textSize="18.0sp" android:textColor="#ff8e8e8e" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="努力加载中..." />
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:id="@id/loading"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="35.0dip"
+            android:layout_marginTop="179.0dip"
+            android:src="@drawable/panda1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="努力加载中..."
+            android:textColor="#ff8e8e8e"
+            android:textSize="18.0sp" />
     </LinearLayout>
-    <LinearLayout android:layout_gravity="center" android:orientation="vertical" android:id="@id/loaderror" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent">
-        <ImageView android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="166.0dip" android:layout_marginBottom="35.0dip" android:src="@drawable/panda2" />
-        <TextView android:textSize="18.0sp" android:textColor="#ff8e8e8e" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="页面加载失败" />
-        <TextView android:textSize="18.0sp" android:textColor="#ff8e8e8e" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="请点击页面刷新" />
+
+    <LinearLayout
+        android:id="@id/loaderror"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="35.0dip"
+            android:layout_marginTop="166.0dip"
+            android:src="@drawable/panda2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="页面加载失败"
+            android:textColor="#ff8e8e8e"
+            android:textSize="18.0sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="请点击页面刷新"
+            android:textColor="#ff8e8e8e"
+            android:textSize="18.0sp" />
     </LinearLayout>
-    <LinearLayout android:layout_gravity="center" android:orientation="vertical" android:id="@id/loadsuccess_nodata" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent">
-        <ImageView android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="179.0dip" android:layout_marginBottom="35.0dip" android:src="@drawable/follow_empty" />
+
+    <LinearLayout
+        android:id="@id/loadsuccess_nodata"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="35.0dip"
+            android:layout_marginTop="179.0dip"
+            android:src="@drawable/follow_empty" />
     </LinearLayout>
 </FrameLayout>
