@@ -19,8 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 //import com.panda.videolivecore.UpdateManager;
 //import com.panda.videolivecore.data.ColumnLiveItemInfo.Data;
+import com.panda.videolivecore.data.ColumnLiveItemInfo;
 import com.panda.videolivecore.data.HotLiveItemInfo;
 //import com.panda.videolivecore.data.LiveItemInfo;
+import com.panda.videolivecore.data.LiveItemInfo;
 import com.panda.videolivecore.data.MultiCateLiveItemInfo;
 import com.panda.videolivecore.data.MultiCateLiveItemInfo.SubType;
 import com.panda.videolivecore.data.SliderItemInfo;
@@ -28,33 +30,33 @@ import com.panda.videolivecore.data.SliderItemInfo;
 import com.panda.videoliveplatform.R;
 //import com.panda.videoliveplatform.fragment.AccountFragment;
 //import com.panda.videoliveplatform.fragment.AccountFragment.OnAccountFragmentListener;
-//import com.panda.videoliveplatform.fragment.ColumnLiveFragment;
-//import com.panda.videoliveplatform.fragment.ColumnLiveFragment.OnColumnLiveFragmentListener;
+import com.panda.videoliveplatform.fragment.ColumnLiveFragment;
+import com.panda.videoliveplatform.fragment.ColumnLiveFragment.OnColumnLiveFragmentListener;
 import com.panda.videoliveplatform.fragment.FragmentAdapter;
 import com.panda.videoliveplatform.fragment.HomeFragment;
 import com.panda.videoliveplatform.fragment.HomeFragment.OnHomeFragmentListener;
-//import com.panda.videoliveplatform.fragment.LiveFragment;
-//import com.panda.videoliveplatform.fragment.LiveFragment.OnLiveFragmentListener;
+import com.panda.videoliveplatform.fragment.LiveFragment;
+import com.panda.videoliveplatform.fragment.LiveFragment.OnLiveFragmentListener;
 //import com.panda.videoliveplatform.service.LiveService;
 //import com.umeng.analytics.AnalyticsConfig;
 //import com.umeng.analytics.MobclickAgent;
 //import de.greenrobot.event.EventBus;
 import java.util.ArrayList;
 
-public class MainFragmentActivity extends FragmentActivity implements OnHomeFragmentListener{
-        //, OnLiveFragmentListener, OnColumnLiveFragmentListener, OnAccountFragmentListener {
+public class MainFragmentActivity extends FragmentActivity implements OnHomeFragmentListener,OnColumnLiveFragmentListener,OnLiveFragmentListener{
+        //OnAccountFragmentListener {
     private final int FRAGMENT_COLUMN_LIVE = 1;
     private final int FRAGMENT_HOME = 0;
     private final int FRAGMENT_LIVE = 2;
     private final int FRAGMENT_USER = 3;
     //private AccountFragment account_frag;
     private Boolean bFlag = Boolean.valueOf(false);
-    //private ColumnLiveFragment column_live_frag;
+    private ColumnLiveFragment column_live_frag;
     private View contentview = null;
     private int currentFragment;
     ArrayList<Fragment> fragmentArray;
     private HomeFragment home_frag;
-    //private LiveFragment live_frag;
+    private LiveFragment live_frag;
     private TextView mColumnLivebtn;
     private RelativeLayout mFrameTitleHeight;
     private TextView mHomeBtn;
@@ -89,7 +91,7 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
 //        startService(new Intent(this, LiveService.class));
         //UpdateManager.checkForceUpdateFlag(this, findViewById(R.id.mainlayout));
         if (VERSION.SDK_INT >= 19) {
-            findViewById(R.id.statusbar_dummy).setVisibility(0);
+            findViewById(R.id.statusbar_dummy).setVisibility(View.VISIBLE);
             Window win = getWindow();
             LayoutParams winParams = win.getAttributes();
             winParams.flags |= 67108864;
@@ -117,8 +119,8 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
         if (this.home_frag == null) {
             FragmentManager fm = getSupportFragmentManager();
             this.home_frag = HomeFragment.newInstance(this);
-            //this.live_frag = LiveFragment.newInstance(this);
-            //this.column_live_frag = ColumnLiveFragment.newInstance(this);
+            this.live_frag = LiveFragment.newInstance(this);
+            this.column_live_frag = ColumnLiveFragment.newInstance(this);
             //this.account_frag = AccountFragment.newInstance();
             this.mFrameTitleHeight = (RelativeLayout) findViewById(R.id.fragment_title_height);
             this.mTitleIcon = (ImageView) findViewById(R.id.fragment_title_icon);
@@ -126,8 +128,8 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
             this.mPager = (ViewPager) findViewById(R.id.viewpager);
             this.fragmentArray = new ArrayList();
             this.fragmentArray.add(this.home_frag);
-//            this.fragmentArray.add(this.column_live_frag);
-//            this.fragmentArray.add(this.live_frag);
+            this.fragmentArray.add(this.column_live_frag);
+            this.fragmentArray.add(this.live_frag);
 //            this.fragmentArray.add(this.account_frag);
             this.mPager.setAdapter(new FragmentAdapter(getSupportFragmentManager(), this.fragmentArray));
             this.mPager.setCurrentItem(0);
@@ -212,9 +214,9 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
 //        startActivity(intent);
     }
 
-//    public void onLiveItemClick(LiveItemInfo info) {
-//        openLiveRoom("", "", info.pictures.img != null ? info.pictures.img : "", info.id);
-//    }
+    public void onLiveItemClick(LiveItemInfo info) {
+        openLiveRoom("", "", info.pictures.img != null ? info.pictures.img : "", info.id);
+    }
 
     public void onAccountClickTest(int id) {
     }
@@ -240,16 +242,16 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
         }
     }
 
-//    public void onColumnLiveItemClick(Data data) {
+    public void onColumnLiveItemClick(ColumnLiveItemInfo.Data data) {
 //        Intent intent = new Intent();
 //        intent.setClass(this, SubLiveActivity.class);
 //        intent.putExtra("cname", data.cname);
 //        intent.putExtra("ename", data.ename);
 //        startActivity(intent);
-//    }
+    }
 
     private void changeFragment(int index) {
-        if (index >= 0 && index < this.fragmentArray.size()) {
+        //if (index >= 0 && index < this.fragmentArray.size()) {
             boolean same = this.currentFragment == index;
             this.mPager.setCurrentItem(index);
             this.currentFragment = index;
@@ -257,15 +259,15 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
 //            if (same && 2 == index && this.live_frag != null) {
 //                this.live_frag.ScrollToTop();
 //            }
-        }
+       // }
     }
 
     private void setSelect(int index) {
         if (index >= 0 && index < this.fragmentArray.size()) {
             switch (index) {
                 case 0:
-                    this.mTitleIcon.setVisibility(0);
-                    this.mSearchIcon.setVisibility(0);
+                    this.mTitleIcon.setVisibility(View.VISIBLE);
+                    this.mSearchIcon.setVisibility(View.VISIBLE);
                     this.mHomeBtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.home_pressed, 0, 0);
                     this.mHomeBtn.setTextColor(getResources().getColor(R.color.title_color));
                     this.mColumnLivebtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.column, 0, 0);
@@ -275,8 +277,8 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
                     this.mUserBtn.setTextColor(getResources().getColor(R.color.webview_bottom_grey));
                     break;
                 case 1:
-                    this.mTitleIcon.setVisibility(0);
-                    this.mSearchIcon.setVisibility(0);
+                    this.mTitleIcon.setVisibility(View.VISIBLE);
+                    this.mSearchIcon.setVisibility(View.VISIBLE);
                     this.mHomeBtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.home, 0, 0);
                     this.mHomeBtn.setTextColor(getResources().getColor(R.color.webview_bottom_grey));
                     this.mColumnLivebtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.column_pressed, 0, 0);
@@ -286,8 +288,8 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
                     this.mUserBtn.setTextColor(getResources().getColor(R.color.webview_bottom_grey));
                     break;
                 case 2:
-                    this.mTitleIcon.setVisibility(0);
-                    this.mSearchIcon.setVisibility(0);
+                    this.mTitleIcon.setVisibility(View.VISIBLE);
+                    this.mSearchIcon.setVisibility(View.VISIBLE);
                     this.mHomeBtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.home, 0, 0);
                     this.mHomeBtn.setTextColor(getResources().getColor(R.color.webview_bottom_grey));
                     this.mColumnLivebtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.column, 0, 0);
@@ -297,8 +299,8 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
                     this.mUserBtn.setTextColor(getResources().getColor(R.color.webview_bottom_grey));
                     break;
                 case 3:
-                    this.mTitleIcon.setVisibility(4);
-                    this.mSearchIcon.setVisibility(4);
+                    this.mTitleIcon.setVisibility(View.INVISIBLE);
+                    this.mSearchIcon.setVisibility(View.INVISIBLE);
                     this.mHomeBtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.home, 0, 0);
                     this.mHomeBtn.setTextColor(getResources().getColor(R.color.webview_bottom_grey));
                     this.mColumnLivebtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.column, 0, 0);
