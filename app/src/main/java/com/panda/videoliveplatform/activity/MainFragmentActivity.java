@@ -160,9 +160,9 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
             this.mUserBtn = (TextView) findViewById(R.id.main_user_btn);
             this.mSearchIcon.setOnClickListener(new OnClickListener() {
                 public void onClick(View view) {
-//                    Intent intent = new Intent();
-//                    intent.setClass(MainFragmentActivity.this, SearchActivity.class);
-//                    MainFragmentActivity.this.startActivity(intent);
+                    Intent intent = new Intent();
+                    intent.setClass(MainFragmentActivity.this, SearchActivity.class);
+                    MainFragmentActivity.this.startActivity(intent);
                 }
             });
             setSelect(0);
