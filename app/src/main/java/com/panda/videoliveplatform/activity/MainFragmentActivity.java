@@ -28,8 +28,8 @@ import com.panda.videolivecore.data.MultiCateLiveItemInfo.SubType;
 import com.panda.videolivecore.data.SliderItemInfo;
 //import com.panda.videolivecore.utils.NotifyEvent;
 import com.panda.videoliveplatform.R;
-//import com.panda.videoliveplatform.fragment.AccountFragment;
-//import com.panda.videoliveplatform.fragment.AccountFragment.OnAccountFragmentListener;
+import com.panda.videoliveplatform.fragment.AccountFragment;
+import com.panda.videoliveplatform.fragment.AccountFragment.OnAccountFragmentListener;
 import com.panda.videoliveplatform.fragment.ColumnLiveFragment;
 import com.panda.videoliveplatform.fragment.ColumnLiveFragment.OnColumnLiveFragmentListener;
 import com.panda.videoliveplatform.fragment.FragmentAdapter;
@@ -43,13 +43,12 @@ import com.panda.videoliveplatform.fragment.LiveFragment.OnLiveFragmentListener;
 //import de.greenrobot.event.EventBus;
 import java.util.ArrayList;
 
-public class MainFragmentActivity extends FragmentActivity implements OnHomeFragmentListener,OnColumnLiveFragmentListener,OnLiveFragmentListener{
-        //OnAccountFragmentListener {
+public class MainFragmentActivity extends FragmentActivity implements OnHomeFragmentListener, OnColumnLiveFragmentListener, OnLiveFragmentListener, OnAccountFragmentListener {
     private final int FRAGMENT_COLUMN_LIVE = 1;
     private final int FRAGMENT_HOME = 0;
     private final int FRAGMENT_LIVE = 2;
     private final int FRAGMENT_USER = 3;
-    //private AccountFragment account_frag;
+    private AccountFragment account_frag;
     private Boolean bFlag = Boolean.valueOf(false);
     private ColumnLiveFragment column_live_frag;
     private View contentview = null;
@@ -121,7 +120,7 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
             this.home_frag = HomeFragment.newInstance(this);
             this.live_frag = LiveFragment.newInstance(this);
             this.column_live_frag = ColumnLiveFragment.newInstance(this);
-            //this.account_frag = AccountFragment.newInstance();
+            this.account_frag = AccountFragment.newInstance();
             this.mFrameTitleHeight = (RelativeLayout) findViewById(R.id.fragment_title_height);
             this.mTitleIcon = (ImageView) findViewById(R.id.fragment_title_icon);
             this.mSearchIcon = (ImageView) findViewById(R.id.fragment_title_search);
@@ -130,7 +129,7 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
             this.fragmentArray.add(this.home_frag);
             this.fragmentArray.add(this.column_live_frag);
             this.fragmentArray.add(this.live_frag);
-//            this.fragmentArray.add(this.account_frag);
+            this.fragmentArray.add(this.account_frag);
             this.mPager.setAdapter(new FragmentAdapter(getSupportFragmentManager(), this.fragmentArray));
             this.mPager.setCurrentItem(0);
             this.mPager.setOnPageChangeListener(new MyOnPageChangeListener());
@@ -251,15 +250,15 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
     }
 
     private void changeFragment(int index) {
-        //if (index >= 0 && index < this.fragmentArray.size()) {
-            boolean same = this.currentFragment == index;
-            this.mPager.setCurrentItem(index);
-            this.currentFragment = index;
-            setSelect(index);
-//            if (same && 2 == index && this.live_frag != null) {
-//                this.live_frag.ScrollToTop();
-//            }
-       // }
+        if (index >= 0 && index < this.fragmentArray.size()) {
+        boolean same = this.currentFragment == index;
+        this.mPager.setCurrentItem(index);
+        this.currentFragment = index;
+        setSelect(index);
+            if (same && 2 == index && this.live_frag != null) {
+                this.live_frag.ScrollToTop();
+            }
+         }
     }
 
     private void setSelect(int index) {
