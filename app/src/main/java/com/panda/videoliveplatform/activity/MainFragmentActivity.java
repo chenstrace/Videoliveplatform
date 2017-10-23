@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -44,6 +45,7 @@ import com.panda.videoliveplatform.fragment.LiveFragment.OnLiveFragmentListener;
 import java.util.ArrayList;
 
 public class MainFragmentActivity extends FragmentActivity implements OnHomeFragmentListener, OnColumnLiveFragmentListener, OnLiveFragmentListener, OnAccountFragmentListener {
+    private static final String TAG = "cjl";
     private final int FRAGMENT_COLUMN_LIVE = 1;
     private final int FRAGMENT_HOME = 0;
     private final int FRAGMENT_LIVE = 2;
@@ -101,12 +103,10 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
 
     protected void onResume() {
         super.onResume();
-        //MobclickAgent.onResume(this);
     }
 
     protected void onPause() {
         super.onPause();
-        //MobclickAgent.onPause(this);
     }
 
     protected void onDestroy() {
@@ -211,9 +211,12 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
 //        intent.putExtra("cname", type.cname);
 //        intent.putExtra("ename", type.ename);
 //        startActivity(intent);
+
+        Log.d(TAG, "onOpenSubLiveActivity: @@@@@@@@@@@@");
     }
 
     public void onLiveItemClick(LiveItemInfo info) {
+        Log.d(TAG, "onLiveItemClick: @@@@@@@@@@@@@@@@");
         openLiveRoom("", "", info.pictures.img != null ? info.pictures.img : "", info.id);
     }
 
@@ -242,11 +245,11 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
     }
 
     public void onColumnLiveItemClick(ColumnLiveItemInfo.Data data) {
-//        Intent intent = new Intent();
-//        intent.setClass(this, SubLiveActivity.class);
-//        intent.putExtra("cname", data.cname);
-//        intent.putExtra("ename", data.ename);
-//        startActivity(intent);
+        Intent intent = new Intent();
+        intent.setClass(this, SubLiveActivity.class);
+        intent.putExtra("cname", data.cname);
+        intent.putExtra("ename", data.ename);
+        startActivity(intent);
     }
 
     private void changeFragment(int index) {
