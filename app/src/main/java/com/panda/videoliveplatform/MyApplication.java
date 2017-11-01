@@ -7,6 +7,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Process;
 
 import com.panda.videolivecore.CoreApplication;
+import com.panda.videolivecore.network.LoginManager;
 //import com.panda.videolivecore.network.LoginManager;
 //import com.panda.videolivecore.setting.SettingStorage;
 //import com.panda.videolivecore.utils.LogUtils;
@@ -56,9 +57,9 @@ public class MyApplication extends Application {
         return application;
     }
 
-//    public LoginManager GetLoginManager() {
-//        return CoreApplication.getInstance().GetLoginManager();
-//    }
+    public LoginManager GetLoginManager() {
+        return CoreApplication.getInstance().GetLoginManager();
+    }
 
     public String version() {
         return this.mVersion;

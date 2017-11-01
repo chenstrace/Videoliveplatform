@@ -171,7 +171,7 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
 
     public void onBackPressed() {
         if (System.currentTimeMillis() - this.mLastPressBackTime > 2000) {
-            Toast.makeText(getApplicationContext(), "再按一次退出程序", 0).show();
+            Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
             this.mLastPressBackTime = System.currentTimeMillis();
             return;
         }
@@ -180,13 +180,13 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
     }
 
     public void openLiveRoom(String addrStream, String urlRoom, String urlImage, String idRoom) {
-//        Intent intent = new Intent();
-//        intent.setClass(this, LiveRoomActivity.class);
-//        intent.putExtra("addrStream", addrStream);
-//        intent.putExtra("urlRoom", urlRoom);
-//        intent.putExtra("urlImage", urlImage);
-//        intent.putExtra("idRoom", idRoom);
-//        startActivity(intent);
+        Intent intent = new Intent();
+        intent.setClass(this, LiveRoomActivity.class);
+        intent.putExtra("addrStream", addrStream);
+        intent.putExtra("urlRoom", urlRoom);
+        intent.putExtra("urlImage", urlImage);
+        intent.putExtra("idRoom", idRoom);
+        startActivity(intent);
     }
 
     public void onHomeHotItemClick(HotLiveItemInfo info) {
@@ -194,34 +194,36 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
     }
 
     public void onHomeCateItemClick(MultiCateLiveItemInfo info) {
+        Log.d(TAG, "onHomeCateItemClick: @@@@");
+        //点击首页的直播间
         openLiveRoom("", "", "", info.id);
     }
 
     public void onSliderClick(SliderItemInfo info) {
+        Log.d(TAG, "onSliderClick: @@@");
+        //点击slider的直播间
         openLiveRoom("", info.url, info.img, info.roomid);
     }
 
     public void onShowFragmentLive() {
+        Log.d(TAG, "onShowFragmentLive: 22222222");
         changeFragment(2);
     }
 
     public void onOpenSubLiveActivity(SubType type) {
-//        Intent intent = new Intent();
-//        intent.setClass(this, SubLiveActivity.class);
-//        intent.putExtra("cname", type.cname);
-//        intent.putExtra("ename", type.ename);
-//        startActivity(intent);
-
-        Log.d(TAG, "onOpenSubLiveActivity: @@@@@@@@@@@@");
+        //点击首页TAB的更多
+        Intent intent = new Intent();
+        intent.setClass(this, SubLiveActivity.class);
+        intent.putExtra("cname", type.cname);
+        intent.putExtra("ename", type.ename);
+        startActivity(intent);
     }
 
     public void onLiveItemClick(LiveItemInfo info) {
-        Log.d(TAG, "onLiveItemClick: @@@@@@@@@@@@@@@@");
+        //点击直播TAB里的直播间
         openLiveRoom("", "", info.pictures.img != null ? info.pictures.img : "", info.id);
     }
 
-    public void onAccountClickTest(int id) {
-    }
 
     public void setAccountPoint(boolean show) {
         if (this.mUserBtnShowPoint != show) {
@@ -245,6 +247,7 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
     }
 
     public void onColumnLiveItemClick(ColumnLiveItemInfo.Data data) {
+        //点击栏目TAB里的某个分类
         Intent intent = new Intent();
         intent.setClass(this, SubLiveActivity.class);
         intent.putExtra("cname", data.cname);

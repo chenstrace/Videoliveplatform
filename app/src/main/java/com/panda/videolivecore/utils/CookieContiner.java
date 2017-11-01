@@ -1,6 +1,7 @@
 package com.panda.videolivecore.utils;
 
 import com.panda.videolivecore.CoreApplication;
+import com.panda.videolivecore.net.info.PtTokenInfo;
 //import com.panda.videolivecore.net.info.PtTokenInfo;
 //import com.panda.videolivecore.network.LoginManager;
 import java.net.HttpURLConnection;
@@ -356,7 +357,7 @@ public class CookieContiner
     }
   }
 
-  /*
+
   public static void setPtToken(PtTokenInfo paramPtTokenInfo)
   {
     try
@@ -370,5 +371,5 @@ public class CookieContiner
 
     }
   }
-  */
+
 }

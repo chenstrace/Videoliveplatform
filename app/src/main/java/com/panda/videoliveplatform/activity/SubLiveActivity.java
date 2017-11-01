@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -32,6 +33,7 @@ import com.panda.videoliveplatform.R;
 import com.panda.videoliveplatform.activity.SubLiveListAdapter.OnSubLiveItemListener;
 
 public class SubLiveActivity extends Activity implements OnSubLiveItemListener {
+    private static final String TAG = "cjl";
     private SubLiveListAdapter mAdapter;
     private String mCname;
     private String mEname;
@@ -107,6 +109,8 @@ public class SubLiveActivity extends Activity implements OnSubLiveItemListener {
 //        intent.putExtra("urlImage", info.pictures.img != null ? info.pictures.img : "");
 //        intent.putExtra("idRoom", info.id);
 //        startActivity(intent);
+
+        Log.d(TAG, "onSubLiveItemClick: ");
     }
 
     protected void loadData(int page) {

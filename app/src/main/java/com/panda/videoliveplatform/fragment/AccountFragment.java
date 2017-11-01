@@ -85,7 +85,7 @@ public class AccountFragment extends Fragment implements IHttpRequestEvent {
     }
 
     public interface OnAccountFragmentListener {
-        void onAccountClickTest(int i);
+        //void onAccountClickTest(int i);
 
         void setAccountPoint(boolean z);
     }

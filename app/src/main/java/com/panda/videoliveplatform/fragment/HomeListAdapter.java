@@ -140,8 +140,10 @@ public class HomeListAdapter extends BaseAdapter implements OnSliderClickListene
             holder.cate_name.setText(cate_data.type.cname);
             holder.cate_more.setOnClickListener(new OnClickListener() {
                 public void onClick(View view) {
+                    //点击首页TAB的更多
+                    Log.d("cjl", "点击首页TAB的更多: ");
                     if (HomeListAdapter.this.mListener != null) {
-                        //HomeListAdapter.this.mListener.onOpenSubLiveActivity(cate_data.type);
+                        HomeListAdapter.this.mListener.onOpenSubLiveActivity(cate_data.type);
                     }
                 }
             });

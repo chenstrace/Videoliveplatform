@@ -2,13 +2,15 @@ package com.panda.videolivecore;
 
 import android.app.Application;
 import android.text.TextUtils;
+
+import com.panda.videolivecore.network.LoginManager;
 //import com.panda.videolivecore.network.LoginManager;
 
 public class CoreApplication {
     public static final int MSG_START_LOGIN_ACTIVITY = 257;
     private static CoreApplication g_instance = null;
     private Application mApplication = null;
-    //  private LoginManager mLoginManager = null;
+      private LoginManager mLoginManager = null;
     private String mVersion = "";
 
     public CoreApplication(Application application) {
@@ -35,9 +37,9 @@ public class CoreApplication {
         return this.mApplication;
     }
 
-//  public LoginManager GetLoginManager() {
-//    return this.mLoginManager;
-//  }
+  public LoginManager GetLoginManager() {
+    return this.mLoginManager;
+  }
 
     public String version() {
         if (TextUtils.isEmpty(this.mVersion)) {
