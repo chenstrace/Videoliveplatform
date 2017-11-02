@@ -73,6 +73,7 @@ public class LiveRoomRequest {
     }
 
     public static boolean readEnterRoomInfo(String strContent, ResultMsgInfo info, EnterRoomInfo infoExtend) {
+        return false;
 //        if (info.read(strContent) == null || info.error != 0) {
 //            return false;
 //        }

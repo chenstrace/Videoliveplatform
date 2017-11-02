@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package tv.danmaku.ijk.media.widget;
+package tv.danmaku.ijk.media.player.widget;
 
 /*-
  * configurated by app project

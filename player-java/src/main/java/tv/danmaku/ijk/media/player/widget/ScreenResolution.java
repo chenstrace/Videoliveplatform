@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package tv.danmaku.ijk.media.widget;
+package tv.danmaku.ijk.media.player.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;

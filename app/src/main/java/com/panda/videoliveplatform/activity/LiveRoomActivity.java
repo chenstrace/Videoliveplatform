@@ -101,6 +101,7 @@ import tv.danmaku.ijk.media.player.IMediaPlayer.OnInfoListener;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 import tv.danmaku.ijk.media.player.widget.VideoView;
 
+
 public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWrapCallback, IHttpRequestEvent, EnterRoomStateEvent {
     private static final int MSG_RECEIVE_CHATINFO = 272;
     public static final int PLAYING = 1;
@@ -350,7 +351,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
                     if (LiveRoomActivity.this.mBufferingIndicator != null) {
                         LiveRoomActivity.this.mBufferingIndicator.setVisibility(0);
                     }
-                    LiveRoomActivity.this.mCacheStartTime = System.currentTimeMillis();
+                    LiveRoomActivity.this.mCacheStartTime = java.lang.System.currentTimeMillis();
                 } else if (what == IMediaPlayer.MEDIA_INFO_BUFFERING_END) {
                     if (LiveRoomActivity.this.mBufferingIndicator != null) {
                         LiveRoomActivity.this.mBufferingIndicator.setVisibility(8);
@@ -376,7 +377,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
                     this.mVideoView.setVideoPath(this.m_startupInfo.addrStream);
                     sendAcqureBambooTask();
                 } else if (!mNotifyDailogShow) {
-                    final AlertDialog dlg = new AlertDialog(this, getResources().getString(R.string.network_change_message_text), getResources().getString(R.string.button_continue), getResources().getString(R.string.button_cancel), DEFAULT_BTN.DEFAULT_YES);
+                    final AlertDialog dlg = new AlertDialog(this, getResources().getString(R.string.network_change_message_text), getResources().getString(R.string.button_continue), getResources().getString(R.string.button_cancel), AlertDialog.DEFAULT_BTN.DEFAULT_YES);
                     dlg.setOnDismissListener(new OnDismissListener() {
                         public void onDismiss(DialogInterface dialog) {
                             switch (dlg.GetClickType()) {
