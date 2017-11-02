@@ -750,11 +750,11 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
     }
 
     private void initDanmakuView() {
-//        this.mDanmuFrame = (LinearLayout) findViewById(R.id.sv_danmaku_frame);
-//        this.mDanmakuViewWrap.InitView(this, this.mDanmuFrame, R.id.sv_danmaku, this);
-//        if (!SettingStorage.IsDanmuOpen()) {
-//            this.mDanmakuViewWrap.Hide();
-//        }
+        this.mDanmuFrame = (LinearLayout) findViewById(R.id.sv_danmaku_frame);
+        this.mDanmakuViewWrap.InitView(this, this.mDanmuFrame, R.id.sv_danmaku, this);
+        if (!SettingStorage.IsDanmuOpen()) {
+            this.mDanmakuViewWrap.Hide();
+        }
     }
 
     public void onClickBack(View view) {
@@ -1163,7 +1163,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
                     }
                 } else if (LiveRoomActivity.this.mTaskStartTime > 0 && LiveRoomActivity.this.mTaskDelay > 0) {
                     long needTime = Math.min(Math.max(((long) LiveRoomActivity.this.mTaskDelay) - ((java.lang.System.currentTimeMillis() - LiveRoomActivity.this.mTaskStartTime) / 60000), 1), (long) LiveRoomActivity.this.mTaskDelay);
-                    ToastUtils.show(LiveRoomActivity.this, String.format(LiveRoomActivity.this.getString(R.string.acquire_bamboo_time), new Object[]{String.valueOf(needTime)}));
+                    ToastUtils.show(LiveRoomActivity.this, String.format(LiveRoomActivity.this.getString(R.string.acquire_bamboo_time), String.valueOf(needTime)));
                 }
             }
         });
@@ -1383,7 +1383,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
     }
 
     private void onRtmpDispatch(Boolean bResult, String strVideoSource, RtmpDispatchInfo info) {
-        if (bResult.booleanValue() && !this.mRoomState.mInfoExtend.videoInfo.IsIniting()) {
+        if (bResult && !this.mRoomState.mInfoExtend.videoInfo.IsIniting()) {
             RestartVideoView(info.getStreamAddress(this.mRoomState.mInfoExtend.videoInfo.sign, this.mRoomState.mInfoExtend.videoInfo.ts));
             detectStartPlaying();
         }
@@ -1442,7 +1442,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
                 info = new ResultMsgInfo();
                 EnterRoomInfo infoExtend = new EnterRoomInfo();
                 if (LiveRoomRequest.readEnterRoomInfo(strReponse, info, infoExtend)) {
-                    onEnterRoom(bResult, info, infoExtend);
+                    onEnterRoom(true, info, infoExtend);
                     this.mEnterRoomSucess = true;
                 } else {
                     liveStatusEnterRoomFailure();
@@ -1474,7 +1474,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
             LiveRoomRequest.readGroupMsg(strReponse, new ResultMsgInfo());
         } else if (RtmpDispatchInfo.STREAM_HD == strContext || RtmpDispatchInfo.STREAM_OD == strContext || RtmpDispatchInfo.STREAM_SD == strContext) {
             RtmpDispatchInfo info2 = new RtmpDispatchInfo();
-            onRtmpDispatch(Boolean.valueOf(RtmpDispatchRequest.onGetStreamAddr(strReponse, info2)), strContext, info2);
+            onRtmpDispatch(RtmpDispatchRequest.onGetStreamAddr(strReponse, info2), strContext, info2);
         } else if ("SendBamboos" == strContext) {
             if (bResult) {
                 info = new ResultMsgInfo();
@@ -1542,7 +1542,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
                     ToastUtils.show(this, getString(R.string.fail_for_network_busy));
                 } else {
                     refreshBambooNum();
-                    ToastUtils.show(this, String.format(getString(R.string.acquire_bamboo_num), new Object[]{strData}));
+                    ToastUtils.show(this, String.format(getString(R.string.acquire_bamboo_num), strData));
                 }
                 this.mTaskState = TASK_STATE.PRE_GETTASKLIST;
                 SetBammbooImageButtonState(false);
@@ -1709,7 +1709,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
                 public void run() {
                     LiveRoomActivity.this.TimeTaskFinish();
                 }
-            }, (long) ((interval * 1000) * 1));
+            }, (long) ((interval * 1000)));
         }
     }
 

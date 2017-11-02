@@ -73,27 +73,26 @@ public class LiveRoomRequest {
     }
 
     public static boolean readEnterRoomInfo(String strContent, ResultMsgInfo info, EnterRoomInfo infoExtend) {
-        return false;
-//        if (info.read(strContent) == null || info.error != 0) {
-//            return false;
-//        }
-//        try {
-//            JsonReader reader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(new String(info.data).getBytes(HttpRequest.CHARSET_NAME_UTF8)), HttpRequest.CHARSET_NAME_UTF8));
-//            reader.beginObject();
-//            while (reader.hasNext()) {
-//                if (aY.d.equalsIgnoreCase(reader.nextName())) {
-//                    infoExtend.read(reader);
-//                } else {
-//                    reader.skipValue();
-//                }
-//            }
-//            reader.endObject();
-//            reader.close();
-//            return true;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return false;
-//        }
+        if (info.read(strContent) == null || info.error != 0) {
+            return false;
+        }
+        try {
+            JsonReader reader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(info.data.getBytes(HttpRequest.CHARSET_NAME_UTF8)), HttpRequest.CHARSET_NAME_UTF8));
+            reader.beginObject();
+            while (reader.hasNext()) {
+                if ("info".equalsIgnoreCase(reader.nextName())) {
+                    infoExtend.read(reader);
+                } else {
+                    reader.skipValue();
+                }
+            }
+            reader.endObject();
+            reader.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public static boolean readGroupMsg(String strContent, ResultMsgInfo info) {
@@ -109,7 +108,7 @@ public class LiveRoomRequest {
             return false;
         }
         try {
-            JsonReader reader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(new String(info.data).getBytes(HttpRequest.CHARSET_NAME_UTF8)), HttpRequest.CHARSET_NAME_UTF8));
+            JsonReader reader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(info.data.getBytes(HttpRequest.CHARSET_NAME_UTF8)), HttpRequest.CHARSET_NAME_UTF8));
             chat_info.read(reader);
             reader.close();
             if (chat_info.getAllAddrString() != null) {
@@ -131,7 +130,7 @@ public class LiveRoomRequest {
             return false;
         }
         try {
-            JsonReader reader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(new String(info.data).getBytes(HttpRequest.CHARSET_NAME_UTF8)), HttpRequest.CHARSET_NAME_UTF8));
+            JsonReader reader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(info.data.getBytes(HttpRequest.CHARSET_NAME_UTF8)), HttpRequest.CHARSET_NAME_UTF8));
             bamboo_list.read(reader);
             reader.close();
             return true;
@@ -155,7 +154,7 @@ public class LiveRoomRequest {
             return strData;
         }
         try {
-            return new String(info.data);
+            return info.data;
         } catch (Exception e) {
             e.printStackTrace();
             return strData;
@@ -167,7 +166,7 @@ public class LiveRoomRequest {
             return false;
         }
         try {
-            JsonReader reader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(new String(info.data).getBytes(HttpRequest.CHARSET_NAME_UTF8)), HttpRequest.CHARSET_NAME_UTF8));
+            JsonReader reader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(info.data.getBytes(HttpRequest.CHARSET_NAME_UTF8)), HttpRequest.CHARSET_NAME_UTF8));
             verify_code.read(reader);
             reader.close();
             return true;

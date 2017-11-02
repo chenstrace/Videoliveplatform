@@ -127,15 +127,15 @@ public class ChatRoomView extends LinearLayout implements IHttpRequestEvent {
     }
 
     public void ReceiveMessage(String name, String content, MsgReceiverType receiver_type) {
-        addMessageToListView(new Message(Integer.valueOf(0), name + ":", "#0291eb", content, receiver_type));
+        addMessageToListView(new Message(0, name + ":", "#0291eb", content, receiver_type));
     }
 
     public void ReceiveBambooMessage(String name, String content, MsgReceiverType receiver_type) {
-        addMessageToListView(new Message(Integer.valueOf(1), name, "#0291eb", content, receiver_type));
+        addMessageToListView(new Message(1, name, "#0291eb", content, receiver_type));
     }
 
     public void BroadcastMessage(String content) {
-        addMessageToListView(new Message(Integer.valueOf(0), content, "#ff2846", "", MsgReceiverType.MSG_RECEIVER_NORMAL));
+        addMessageToListView(new Message(0, content, "#ff2846", "", MsgReceiverType.MSG_RECEIVER_NORMAL));
     }
 
     private void addMessageToListView(Message message) {

@@ -27,11 +27,11 @@ public class CoreApplication {
         return g_instance;
     }
 
-//  public void newLoginManager() {
-//    if (this.mLoginManager == null) {
-//      this.mLoginManager = new LoginManager(this.mApplication);
-//    }
-//  }
+  public void newLoginManager() {
+    if (this.mLoginManager == null) {
+      this.mLoginManager = new LoginManager(this.mApplication);
+    }
+  }
 
     public Application getApplication() {
         return this.mApplication;

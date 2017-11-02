@@ -18,11 +18,11 @@ import master.flame.danmaku.danmaku.loader.android.DanmakuLoaderFactory;
 import master.flame.danmaku.danmaku.model.BaseDanmaku;
 import master.flame.danmaku.danmaku.model.DanmakuTimer;
 import master.flame.danmaku.danmaku.model.Duration;
-//import master.flame.danmaku.danmaku.model.android.DanmakuGlobalConfig;
+import master.flame.danmaku.danmaku.model.android.DanmakuGlobalConfig;
 import master.flame.danmaku.danmaku.model.android.Danmakus;
 import master.flame.danmaku.danmaku.parser.BaseDanmakuParser;
-//import master.flame.danmaku.danmaku.parser.DanmakuFactory;
-//import master.flame.danmaku.danmaku.parser.android.BiliDanmukuParser;
+import master.flame.danmaku.danmaku.parser.DanmakuFactory;
+import master.flame.danmaku.danmaku.parser.android.BiliDanmukuParser;
 
 public class DanmakuViewWrap {
     private static int DOUBLE_CLICK_TIME = 300;
@@ -52,52 +52,52 @@ public class DanmakuViewWrap {
         return new ByteArrayInputStream(in.getBytes("UTF-8"));
     }
 
-//    public void InitView(Activity activity, LinearLayout parentLayout, int viewid, IDanmakuViewWrapCallback callback) {
-//        this.mDanmakuViewWrapCallback = callback;
-//        this.mParentActivity = new WeakReference(activity);
-//        this.mParentLayout = new WeakReference(parentLayout);
-//        this.mDuration = new Duration(6000);
-//        if (this.mParentActivity.get() != null) {
-//            this.mDanmakuView = (IDanmakuView) ((Activity) this.mParentActivity.get()).findViewById(viewid);
-//            DanmakuGlobalConfig.DEFAULT.setDanmakuStyle(0, 0.0f).setDuplicateMergingEnabled(false).setMaximumVisibleSizeInScreen(100);
-//            if (this.mDanmakuView != null) {
-//                try {
-//                    this.mParser = createParser(StringTOInputStream(XML_PARSE_LOAD));
-//                } catch (Exception e) {
-//                }
-//                this.mDanmakuView.setCallback(new Callback() {
-//                    public void updateTimer(DanmakuTimer timer) {
-//                    }
-//
-//                    public void prepared() {
-//                        DanmakuViewWrap.this.mDanmakuView.start();
-//                    }
-//                });
-//                if (this.mParser != null) {
-//                    this.mDanmakuView.prepare(this.mParser);
-//                }
-//                this.mDanmakuView.enableDanmakuDrawingCache(true);
-//                OnClickListener onClickListener = new OnClickListener() {
-//                    public void onClick(View view) {
-//                        DanmakuViewWrap.this.mLastTime = DanmakuViewWrap.this.mCurTime;
-//                        DanmakuViewWrap.this.mCurTime = System.currentTimeMillis();
-//                        if (DanmakuViewWrap.this.mCurTime - DanmakuViewWrap.this.mLastTime < ((long) DanmakuViewWrap.DOUBLE_CLICK_TIME)) {
-//                            if (DanmakuViewWrap.this.mDanmakuViewWrapCallback != null) {
-//                                DanmakuViewWrap.this.mDanmakuViewWrapCallback.onDoubleClickDanmakuView();
-//                            }
-//                        } else if (DanmakuViewWrap.this.mDanmakuViewWrapCallback != null) {
-//                            DanmakuViewWrap.this.mDanmakuViewWrapCallback.onClickDanmakuView();
-//                        }
-//                    }
-//                };
-//                ((View) this.mDanmakuView).setOnClickListener(onClickListener);
-//                if (this.mParentLayout.get() != null) {
-//                    ((LinearLayout) this.mParentLayout.get()).setOnClickListener(onClickListener);
-//                }
-//            }
-//            Hide();
-//        }
-//    }
+    public void InitView(Activity activity, LinearLayout parentLayout, int viewid, IDanmakuViewWrapCallback callback) {
+        this.mDanmakuViewWrapCallback = callback;
+        this.mParentActivity = new WeakReference(activity);
+        this.mParentLayout = new WeakReference(parentLayout);
+        this.mDuration = new Duration(6000);
+        if (this.mParentActivity.get() != null) {
+            this.mDanmakuView = (IDanmakuView) ((Activity) this.mParentActivity.get()).findViewById(viewid);
+            DanmakuGlobalConfig.DEFAULT.setDanmakuStyle(0, 0.0f).setDuplicateMergingEnabled(false).setMaximumVisibleSizeInScreen(100);
+            if (this.mDanmakuView != null) {
+                try {
+                    this.mParser = createParser(StringTOInputStream(XML_PARSE_LOAD));
+                } catch (Exception e) {
+                }
+                this.mDanmakuView.setCallback(new Callback() {
+                    public void updateTimer(DanmakuTimer timer) {
+                    }
+
+                    public void prepared() {
+                        DanmakuViewWrap.this.mDanmakuView.start();
+                    }
+                });
+                if (this.mParser != null) {
+                    this.mDanmakuView.prepare(this.mParser);
+                }
+                this.mDanmakuView.enableDanmakuDrawingCache(true);
+                OnClickListener onClickListener = new OnClickListener() {
+                    public void onClick(View view) {
+                        DanmakuViewWrap.this.mLastTime = DanmakuViewWrap.this.mCurTime;
+                        DanmakuViewWrap.this.mCurTime = System.currentTimeMillis();
+                        if (DanmakuViewWrap.this.mCurTime - DanmakuViewWrap.this.mLastTime < ((long) DanmakuViewWrap.DOUBLE_CLICK_TIME)) {
+                            if (DanmakuViewWrap.this.mDanmakuViewWrapCallback != null) {
+                                DanmakuViewWrap.this.mDanmakuViewWrapCallback.onDoubleClickDanmakuView();
+                            }
+                        } else if (DanmakuViewWrap.this.mDanmakuViewWrapCallback != null) {
+                            DanmakuViewWrap.this.mDanmakuViewWrapCallback.onClickDanmakuView();
+                        }
+                    }
+                };
+                ((View) this.mDanmakuView).setOnClickListener(onClickListener);
+                if (this.mParentLayout.get() != null) {
+                    ((LinearLayout) this.mParentLayout.get()).setOnClickListener(onClickListener);
+                }
+            }
+            Hide();
+        }
+    }
 
     public void Hide() {
         if (this.mDanmakuView != null) {
@@ -132,42 +132,42 @@ public class DanmakuViewWrap {
         }
     }
 
-//    private BaseDanmakuParser createParser(InputStream stream) {
-//        if (stream == null) {
-//            return new BaseDanmakuParser() {
-//                protected Danmakus parse() {
-//                    return new Danmakus();
-//                }
-//            };
-//        }
-//        ILoader loader = DanmakuLoaderFactory.create(DanmakuLoaderFactory.TAG_BILI);
-//        try {
-//            loader.load(stream);
-//        } catch (IllegalDataException e) {
-//            e.printStackTrace();
-//        }
-//        BaseDanmakuParser parser = new BiliDanmukuParser();
-//        parser.load(loader.getDataSource());
-//        return parser;
-//    }
+    private BaseDanmakuParser createParser(InputStream stream) {
+        if (stream == null) {
+            return new BaseDanmakuParser() {
+                protected Danmakus parse() {
+                    return new Danmakus();
+                }
+            };
+        }
+        ILoader loader = DanmakuLoaderFactory.create(DanmakuLoaderFactory.TAG_BILI);
+        try {
+            loader.load(stream);
+        } catch (IllegalDataException e) {
+            e.printStackTrace();
+        }
+        BaseDanmakuParser parser = new BiliDanmukuParser();
+        parser.load(loader.getDataSource());
+        return parser;
+    }
 
-//    public void addDanmaku(String msg, boolean islive) {
-//        if (this.mbIsVisible) {
-//            BaseDanmaku danmaku = DanmakuFactory.createDanmaku(1);
-//            if (danmaku != null && this.mDanmakuView != null) {
-//                danmaku.isLive = islive;
-//                danmaku.text = msg;
-//                danmaku.priority = (byte) 1;
-//                danmaku.time = this.mDanmakuView.getCurrentTime();
-//                danmaku.textSize = this.mDanmuFontSize * (this.mParser.getDisplayer().getDensity() - 0.6f);
-//                danmaku.textColor = -1;
-//                if (this.mDuration != null) {
-//                    danmaku.setDuration(this.mDuration);
-//                }
-//                this.mDanmakuView.addDanmaku(danmaku);
-//            }
-//        }
-//    }
+    public void addDanmaku(String msg, boolean islive) {
+        if (this.mbIsVisible) {
+            BaseDanmaku danmaku = DanmakuFactory.createDanmaku(1);
+            if (danmaku != null && this.mDanmakuView != null) {
+                danmaku.isLive = islive;
+                danmaku.text = msg;
+                danmaku.priority = (byte) 1;
+                danmaku.time = this.mDanmakuView.getCurrentTime();
+                danmaku.textSize = this.mDanmuFontSize * (this.mParser.getDisplayer().getDensity() - 0.6f);
+                danmaku.textColor = -1;
+                if (this.mDuration != null) {
+                    danmaku.setDuration(this.mDuration);
+                }
+                this.mDanmakuView.addDanmaku(danmaku);
+            }
+        }
+    }
 
     public boolean ChangeVisible() {
         if (this.mDanmakuView == null) {

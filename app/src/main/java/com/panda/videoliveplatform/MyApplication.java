@@ -29,7 +29,7 @@ public class MyApplication extends Application {
                 //LogUtils.SetDebugEnable(this);
                 GetVersion();
                 getChannelId();
-                //CoreApplication.getInstance().newLoginManager();
+                CoreApplication.getInstance().newLoginManager();
             }
         }
         loadSetting();

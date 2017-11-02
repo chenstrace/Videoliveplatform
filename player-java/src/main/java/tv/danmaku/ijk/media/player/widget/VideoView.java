@@ -273,6 +273,182 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
 
     public VideoView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        this.mCurrentState = 0;
+        this.mTargetState = 0;
+        this.mVideoLayout = 1;
+        this.mSurfaceHolder = null;
+        this.mMediaPlayer = null;
+        this.mCanPause = true;
+        this.mCanSeekBack = true;
+        this.mCanSeekForward = true;
+        this.mActualVideoHeight = 0;
+        this.mSizeChangedListener = new OnVideoSizeChangedListener() {
+            public void onVideoSizeChanged(IMediaPlayer mp, int width, int height, int sarNum, int sarDen) {
+                DebugLog.dfmt(VideoView.TAG, "onVideoSizeChanged: (%dx%d)", Integer.valueOf(width), Integer.valueOf(height));
+                VideoView.this.mVideoWidth = mp.getVideoWidth();
+                VideoView.this.mVideoHeight = mp.getVideoHeight();
+                VideoView.this.mVideoSarNum = sarNum;
+                VideoView.this.mVideoSarDen = sarDen;
+                if (VideoView.this.mVideoWidth != 0 && VideoView.this.mVideoHeight != 0) {
+                    VideoView.this.setVideoLayout(VideoView.this.mVideoLayout);
+                }
+            }
+        };
+        this.mPreparedListener = new OnPreparedListener() {
+            public void onPrepared(IMediaPlayer mp) {
+                DebugLog.d(VideoView.TAG, "onPrepared");
+                VideoView.this.mCurrentState = 2;
+                VideoView.this.mTargetState = 3;
+                if (VideoView.this.mOnPreparedListener != null) {
+                    VideoView.this.mOnPreparedListener.onPrepared(VideoView.this.mMediaPlayer);
+                }
+                if (VideoView.this.mMediaController != null) {
+                    VideoView.this.mMediaController.setEnabled(true);
+                }
+                VideoView.this.mVideoWidth = mp.getVideoWidth();
+                VideoView.this.mVideoHeight = mp.getVideoHeight();
+                long seekToPosition = VideoView.this.mSeekWhenPrepared;
+                if (seekToPosition != 0) {
+                    VideoView.this.seekTo(seekToPosition);
+                }
+                if (VideoView.this.mVideoWidth != 0 && VideoView.this.mVideoHeight != 0) {
+                    VideoView.this.setVideoLayout(VideoView.this.mVideoLayout);
+                    if (VideoView.this.mSurfaceWidth != VideoView.this.mVideoWidth || VideoView.this.mSurfaceHeight != VideoView.this.mVideoHeight) {
+                        return;
+                    }
+                    if (VideoView.this.mTargetState == 3) {
+                        VideoView.this.start();
+                        if (VideoView.this.mMediaController != null) {
+                            VideoView.this.mMediaController.show();
+                        }
+                    } else if (!VideoView.this.isPlaying()) {
+                        if ((seekToPosition != 0 || VideoView.this.getCurrentPosition() > 0) && VideoView.this.mMediaController != null) {
+                            VideoView.this.mMediaController.show(0);
+                        }
+                    }
+                } else if (VideoView.this.mTargetState == 3) {
+                    VideoView.this.start();
+                }
+            }
+        };
+        this.mCompletionListener = new OnCompletionListener() {
+            public void onCompletion(IMediaPlayer mp) {
+                DebugLog.d(VideoView.TAG, "onCompletion");
+                VideoView.this.mCurrentState = 5;
+                VideoView.this.mTargetState = 5;
+                if (VideoView.this.mMediaController != null) {
+                    VideoView.this.mMediaController.hide();
+                }
+                if (VideoView.this.mOnCompletionListener != null) {
+                    VideoView.this.mOnCompletionListener.onCompletion(VideoView.this.mMediaPlayer);
+                }
+            }
+        };
+        this.mErrorListener = new OnErrorListener() {
+            public boolean onError(IMediaPlayer mp, int framework_err, int impl_err) {
+                DebugLog.dfmt(VideoView.TAG, "Error: %d, %d", Integer.valueOf(framework_err), Integer.valueOf(impl_err));
+                VideoView.this.mCurrentState = -1;
+                VideoView.this.mTargetState = -1;
+                if (VideoView.this.mMediaController != null) {
+                    VideoView.this.mMediaController.hide();
+                }
+                if ((VideoView.this.mOnErrorListener == null || !VideoView.this.mOnErrorListener.onError(VideoView.this.mMediaPlayer, framework_err, impl_err)) && VideoView.this.mMediaBufferingIndicator != null) {
+                    VideoView.this.mMediaBufferingIndicator.setVisibility(8);
+                }
+                return true;
+            }
+        };
+        this.mBufferingUpdateListener = new OnBufferingUpdateListener() {
+            public void onBufferingUpdate(IMediaPlayer mp, int percent) {
+                VideoView.this.mCurrentBufferPercentage = percent;
+                if (VideoView.this.mOnBufferingUpdateListener != null) {
+                    VideoView.this.mOnBufferingUpdateListener.onBufferingUpdate(mp, percent);
+                }
+            }
+        };
+        this.mInfoListener = new OnInfoListener() {
+            public boolean onInfo(IMediaPlayer mp, int what, int extra) {
+                DebugLog.dfmt(VideoView.TAG, "onInfo: (%d, %d)", Integer.valueOf(what), Integer.valueOf(extra));
+                if (VideoView.this.mOnInfoListener != null) {
+                    VideoView.this.mOnInfoListener.onInfo(mp, what, extra);
+                } else if (VideoView.this.mMediaPlayer != null) {
+                    if (what == IMediaPlayer.MEDIA_INFO_BUFFERING_START) {
+                        DebugLog.dfmt(VideoView.TAG, "onInfo: (MEDIA_INFO_BUFFERING_START)", new Object[0]);
+                        if (VideoView.this.mMediaBufferingIndicator != null) {
+                            VideoView.this.mMediaBufferingIndicator.setVisibility(0);
+                        }
+                    } else if (what == IMediaPlayer.MEDIA_INFO_BUFFERING_END) {
+                        DebugLog.dfmt(VideoView.TAG, "onInfo: (MEDIA_INFO_BUFFERING_END)", new Object[0]);
+                        if (VideoView.this.mMediaBufferingIndicator != null) {
+                            VideoView.this.mMediaBufferingIndicator.setVisibility(8);
+                        }
+                    }
+                }
+                return true;
+            }
+        };
+        this.mSeekCompleteListener = new OnSeekCompleteListener() {
+            public void onSeekComplete(IMediaPlayer mp) {
+                DebugLog.d(VideoView.TAG, "onSeekComplete");
+                if (VideoView.this.mOnSeekCompleteListener != null) {
+                    VideoView.this.mOnSeekCompleteListener.onSeekComplete(mp);
+                }
+            }
+        };
+        this.mSHCallback = new Callback() {
+            public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
+                VideoView.this.mSurfaceHolder = holder;
+                if (VideoView.this.mMediaPlayer != null) {
+                    VideoView.this.mMediaPlayer.setDisplay(VideoView.this.mSurfaceHolder);
+                }
+                VideoView.this.mSurfaceWidth = w;
+                VideoView.this.mSurfaceHeight = h;
+                boolean isValidState;
+                if (VideoView.this.mTargetState == 3) {
+                    isValidState = true;
+                } else {
+                    isValidState = false;
+                }
+                boolean hasValidSize;
+                if (VideoView.this.mVideoWidth == w && VideoView.this.mVideoHeight == h) {
+                    hasValidSize = true;
+                } else {
+                    hasValidSize = false;
+                }
+                if (VideoView.this.mMediaPlayer != null && isValidState && hasValidSize) {
+                    if (VideoView.this.mSeekWhenPrepared != 0) {
+                        VideoView.this.seekTo(VideoView.this.mSeekWhenPrepared);
+                    }
+                    VideoView.this.start();
+                    if (VideoView.this.mMediaController != null) {
+                        if (VideoView.this.mMediaController.isShowing()) {
+                            VideoView.this.mMediaController.hide();
+                        }
+                        VideoView.this.mMediaController.show();
+                    }
+                }
+            }
+
+            public void surfaceCreated(SurfaceHolder holder) {
+                VideoView.this.mSurfaceHolder = holder;
+                if (VideoView.this.mMediaPlayer != null && VideoView.this.mCurrentState == 6 && VideoView.this.mTargetState == 7) {
+                    VideoView.this.mMediaPlayer.setDisplay(VideoView.this.mSurfaceHolder);
+                    VideoView.this.resume();
+                    return;
+                }
+                VideoView.this.openVideo();
+            }
+
+            public void surfaceDestroyed(SurfaceHolder holder) {
+                VideoView.this.mSurfaceHolder = null;
+                if (VideoView.this.mMediaController != null) {
+                    VideoView.this.mMediaController.hide();
+                }
+                if (VideoView.this.mCurrentState != 6) {
+                    VideoView.this.release(true);
+                }
+            }
+        };
         initVideoView(context);
     }
 
@@ -324,7 +500,8 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
         this.mVideoHeight = 0;
         this.mVideoSarNum = 0;
         this.mVideoSarDen = 0;
-        getHolder().addCallback(this.mSHCallback);
+        SurfaceHolder holder = getHolder();
+        holder.addCallback(this.mSHCallback);
         setFocusable(true);
         setFocusableInTouchMode(true);
         requestFocus();
@@ -445,7 +622,6 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
             }
         }
     }
-
 
 
     public void setOnPreparedListener(OnPreparedListener l) {

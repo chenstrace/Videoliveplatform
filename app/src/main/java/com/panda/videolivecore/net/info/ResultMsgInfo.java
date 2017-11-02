@@ -12,8 +12,6 @@ public class ResultMsgInfo {
     public int error = 0;
 
     public JSONObject read(String strContent) {
-        Exception e;
-        JSONObject obj = null;
         try {
             JSONObject obj2 = new JSONObject(strContent);
             try {
@@ -23,15 +21,10 @@ public class ResultMsgInfo {
                 checkError(this.error);
                 return obj2;
             } catch (Exception e2) {
-                e = e2;
-                obj = obj2;
-                e.printStackTrace();
-                return obj;
+                return null;
             }
         } catch (Exception e3) {
-            e = e3;
-            e.printStackTrace();
-            return obj;
+            return null;
         }
     }
 
