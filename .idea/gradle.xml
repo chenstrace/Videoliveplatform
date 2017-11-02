@@ -11,6 +11,8 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/libs" />
             <option value="$PROJECT_DIR$/libs/pulltorefresh" />
+            <option value="$PROJECT_DIR$/player-armv7a" />
+            <option value="$PROJECT_DIR$/player-java" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

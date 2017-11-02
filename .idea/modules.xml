@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/Videoliveplatform.iml" filepath="$PROJECT_DIR$/Videoliveplatform.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libs/libs.iml" filepath="$PROJECT_DIR$/libs/libs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/player-armv7a/player-armv7a.iml" filepath="$PROJECT_DIR$/player-armv7a/player-armv7a.iml" />
+      <module fileurl="file://$PROJECT_DIR$/player-java/player-java.iml" filepath="$PROJECT_DIR$/player-java/player-java.iml" />
       <module fileurl="file://$PROJECT_DIR$/libs/pulltorefresh/pulltorefresh.iml" filepath="$PROJECT_DIR$/libs/pulltorefresh/pulltorefresh.iml" />
     </modules>
   </component>

@@ -332,7 +332,6 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
                 LiveRoomActivity.this.mBufferingIndicator.setVisibility(8);
                 LiveRoomActivity.this.mCurrentStatus = 4;
                 LiveRoomActivity.this.detectStartPlaying();
-                UmengStatic.StaticVideoBreak(LiveRoomActivity.this);
                 return false;
             }
         });

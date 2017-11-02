@@ -8,8 +8,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="shape">rect</item>
-        <item name="selected_color">#ff30cce5</item>
-        <item name="unselected_color">#ff333333</item>
         <item name="selected_width">13.0dip</item>
         <item name="selected_height">4.0dip</item>
         <item name="unselected_width">13.0dip</item>

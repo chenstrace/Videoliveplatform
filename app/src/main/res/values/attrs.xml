@@ -12,6 +12,11 @@
     <attr name="aspectRatioX" format="integer" />
     <attr name="aspectRatioY" format="integer" />
     <attr name="imageResource" format="reference" />
+    <attr name="pstsIndicatorColor" format="color" />
+    <attr name="pstsUnderlineColor" format="color" />
+    <attr name="pstsDividerColor" format="color" />
+    <attr name="pstsTabPaddingLeftRight" format="dimension" />
+    <attr name="pstsShouldExpand" format="boolean" />
 
     <!--<attr name="visibility">-->
         <!--<enum name="invisible" value="1" />-->
@@ -22,41 +27,11 @@
         <!--<enum name="oval" value="0" />-->
         <!--<enum name="rect" value="1" />-->
     <!--</attr>-->
-    <attr name="selected_color" format="color" />
-    <attr name="unselected_color" format="color" />
-    <attr name="selected_drawable" format="reference" />
-    <attr name="unselected_drawable" format="reference" />
-    <attr name="selected_width" format="dimension" />
-    <attr name="selected_height" format="dimension" />
-    <attr name="unselected_width" format="dimension" />
-    <attr name="unselected_height" format="dimension" />
-    <attr name="padding_left" format="dimension" />
-    <attr name="padding_right" format="dimension" />
-    <attr name="padding_top" format="dimension" />
-    <attr name="padding_bottom" format="dimension" />
-    <attr name="selected_padding_left" format="dimension" />
-    <attr name="selected_padding_right" format="dimension" />
-    <attr name="selected_padding_top" format="dimension" />
-    <attr name="selected_padding_bottom" format="dimension" />
-    <attr name="unselected_padding_left" format="dimension" />
-    <attr name="unselected_padding_right" format="dimension" />
-    <attr name="unselected_padding_top" format="dimension" />
-    <attr name="unselected_padding_bottom" format="dimension" />
-    <attr name="pstsIndicatorColor" format="color" />
-    <attr name="pstsUnderlineColor" format="color" />
-    <attr name="pstsDividerColor" format="color" />
-    <attr name="pstsIndicatorHeight" format="dimension" />
-    <attr name="pstsUnderlineHeight" format="dimension" />
-    <attr name="pstsDividerPadding" format="dimension" />
-    <attr name="pstsTabPaddingLeftRight" format="dimension" />
-    <attr name="pstsScrollOffset" format="dimension" />
-    <attr name="pstsTabBackground" format="reference" />
-    <attr name="pstsShouldExpand" format="boolean" />
-    <attr name="pstsTextAllCaps" format="boolean" />
-    <attr name="ptrRefreshableViewBackground" format="reference|color" />
-    <attr name="ptrHeaderBackground" format="reference|color" />
-    <attr name="ptrHeaderTextColor" format="reference|color" />
-    <attr name="ptrHeaderSubTextColor" format="reference|color" />
+
+
+
+
+
 
     <!--<attr name="ptrMode">-->
         <!--<flag name="both" value="0x00000003" />-->
@@ -68,32 +43,20 @@
         <!--<flag name="pullUpFromBottom" value="0x00000002" />-->
     <!--</attr>-->
 
-    <attr name="ptrShowIndicator" format="reference|boolean" />
-    <attr name="ptrDrawable" format="reference" />
-    <attr name="ptrDrawableStart" format="reference" />
-    <attr name="ptrDrawableEnd" format="reference" />
-    <attr name="ptrOverScroll" format="reference|boolean" />
-    <attr name="ptrHeaderTextAppearance" format="reference" />
-    <attr name="ptrSubHeaderTextAppearance" format="reference" />
+
 
     <!--<attr name="ptrAnimationStyle">-->
         <!--<flag name="flip" value="0x00000001" />-->
         <!--<flag name="rotate" value="0x00000000" />-->
     <!--</attr>-->
 
-    <attr name="ptrScrollingWhileRefreshingEnabled" format="reference|boolean" />
-    <attr name="ptrListViewExtrasEnabled" format="reference|boolean" />
-    <attr name="ptrRotateDrawableWhilePulling" format="reference|boolean" />
-    <attr name="ptrAdapterViewBackground" format="reference|color" />
-    <attr name="ptrDrawableTop" format="reference" />
-    <attr name="ptrDrawableBottom" format="reference" />
+
 
     <!--<attr name="indicator_visibility">-->
         <!--<enum name="invisible" value="1" />-->
         <!--<enum name="visible" value="0" />-->
     <!--</attr>-->
 
-    <attr name="auto_cycle" format="boolean" />
     <!--<attr name="pager_animation">-->
         <!--<enum name="Accordion" value="1" />-->
         <!--<enum name="Background2Foreground" value="2" />-->
@@ -112,7 +75,5 @@
         <!--<enum name="ZoomOut" value="15" />-->
         <!--<enum name="ZoomOutSlide" value="14" />-->
     <!--</attr>-->
-    <attr name="pager_animation_span" format="integer" />
-    <attr name="SliderStyle" format="reference" />
-    <attr name="PagerIndicatorStyle" format="reference" />
+
 </resources>

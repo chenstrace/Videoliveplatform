@@ -1,1 +1,1 @@
-include ':libs:pulltorefresh' ,':app'
+include ':libs:pulltorefresh', ':app', ':player-armv7a', ':player-java'

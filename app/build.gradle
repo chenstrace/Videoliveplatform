@@ -1,18 +1,20 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
-    useLibrary 'org.apache.http.legacy'
+    compileSdkVersion 22
+    buildToolsVersion '22.0.1'
+//    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "com.panda.videoliveplatform"
-        minSdkVersion 21
-        targetSdkVersion 25
+        minSdkVersion 9
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+
     buildTypes {
         release {
             minifyEnabled false
@@ -23,9 +25,11 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    //compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+    compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+
     //testCompile 'junit:junit:4.12'
-    compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.volley:volley:1.0.0'
     compile project(':libs:pulltorefresh')
     compile 'com.squareup.picasso:picasso:2.3.2'
@@ -34,5 +38,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.github.ctiao:DanmakuFlameMaster:0.9.16'
     //compile 'com.github.ctiao:ndkbitmap-armv7a:0.9.16'
+    compile project(path: ':player-armv7a')
+    compile project(path: ':player-java')
 
 }
