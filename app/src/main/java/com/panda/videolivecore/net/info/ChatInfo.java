@@ -14,26 +14,26 @@ public class ChatInfo {
     public String ts = "";
 
     public void read(JsonReader reader) throws IOException {
-//        reader.beginObject();
-//        while (reader.hasNext()) {
-//            String strName = reader.nextName();
-//            if (f.A.equalsIgnoreCase(strName)) {
-//                this.rid = reader.nextInt();
-//            } else if ("appid".equalsIgnoreCase(strName)) {
-//                this.appid = reader.nextString();
-//            } else if ("chat_addr_list".equalsIgnoreCase(strName)) {
-//                readChatAddrList(reader);
-//            } else if ("ts".equalsIgnoreCase(strName)) {
-//                this.ts = reader.nextString();
-//            } else if ("sign".equalsIgnoreCase(strName)) {
-//                this.sign = reader.nextString();
-//            } else if ("authtype".equalsIgnoreCase(strName)) {
-//                this.authtype = reader.nextString();
-//            } else {
-//                reader.skipValue();
-//            }
-//        }
-//        reader.endObject();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String strName = reader.nextName();
+            if ("rid".equalsIgnoreCase(strName)) {
+                this.rid = reader.nextInt();
+            } else if ("appid".equalsIgnoreCase(strName)) {
+                this.appid = reader.nextString();
+            } else if ("chat_addr_list".equalsIgnoreCase(strName)) {
+                readChatAddrList(reader);
+            } else if ("ts".equalsIgnoreCase(strName)) {
+                this.ts = reader.nextString();
+            } else if ("sign".equalsIgnoreCase(strName)) {
+                this.sign = reader.nextString();
+            } else if ("authtype".equalsIgnoreCase(strName)) {
+                this.authtype = reader.nextString();
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
     }
 
     protected void readChatAddrList(JsonReader reader) throws IOException {

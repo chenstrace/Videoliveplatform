@@ -1,9 +1,7 @@
 package com.panda.videolivecore.net.info;
 
 import android.util.JsonReader;
-
 import com.panda.videolivecore.net.NumericUtils;
-
 import java.io.IOException;
 import java.util.Random;
 
@@ -14,6 +12,29 @@ public class RoomInfo {
     public String name = "";
     public String personNum = "";
     public String type = "0";
+
+    public void read(JsonReader reader) throws IOException {
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String strName = reader.nextName();
+            if ("id".equalsIgnoreCase(strName)) {
+                this.id = reader.nextString();
+            } else if ("name".equalsIgnoreCase(strName)) {
+                this.name = reader.nextString();
+            } else if ("type".equalsIgnoreCase(strName)) {
+                this.type = reader.nextString();
+            } else if ("bulletin".equalsIgnoreCase(strName)) {
+                this.bulletin = reader.nextString();
+            } else if ("fans".equalsIgnoreCase(strName)) {
+                this.fans = reader.nextString();
+            } else if ("person_num".equalsIgnoreCase(strName)) {
+                this.personNum = reader.nextString();
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+    }
 
     public int getFans() {
         int nfans = 0;
@@ -55,30 +76,4 @@ public class RoomInfo {
         int num = new Random().nextInt(10) + 1;
         return String.format("%d", new Object[]{Integer.valueOf(num)});
     }
-
-
-    public void read(JsonReader paramJsonReader)
-            throws IOException {
-        paramJsonReader.beginObject();
-        while (paramJsonReader.hasNext()) {
-            String str = paramJsonReader.nextName();
-            if ("id".equalsIgnoreCase(str))
-                this.id = paramJsonReader.nextString();
-            else if ("name".equalsIgnoreCase(str))
-                this.name = paramJsonReader.nextString();
-            else if ("type".equalsIgnoreCase(str))
-                this.type = paramJsonReader.nextString();
-            else if ("bulletin".equalsIgnoreCase(str))
-                this.bulletin = paramJsonReader.nextString();
-            else if ("fans".equalsIgnoreCase(str))
-                this.fans = paramJsonReader.nextString();
-            else if ("person_num".equalsIgnoreCase(str))
-                this.personNum = paramJsonReader.nextString();
-            else
-                paramJsonReader.skipValue();
-        }
-        paramJsonReader.endObject();
-    }
-
-
 }

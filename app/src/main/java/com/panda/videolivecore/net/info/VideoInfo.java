@@ -28,30 +28,30 @@ public class VideoInfo {
     public String ts = "";
 
     public void read(JsonReader reader) throws IOException {
-//        reader.beginObject();
-//        while (reader.hasNext()) {
-//            String strName = reader.nextName();
-//            if (aY.e.equalsIgnoreCase(strName)) {
-//                this.name = reader.nextString();
-//            } else if ("time".equalsIgnoreCase(strName)) {
-//                this.time = reader.nextString();
-//            } else if ("stream_addr".equalsIgnoreCase(strName)) {
-//                readStreamAddr(reader);
-//            } else if ("room_key".equalsIgnoreCase(strName)) {
-//                this.roomKey = reader.nextString();
-//            } else if ("status".equalsIgnoreCase(strName)) {
-//                this.status = reader.nextString();
-//            } else if ("plflag".equalsIgnoreCase(strName)) {
-//                this.plFlag = reader.nextString();
-//            } else if ("ts".equalsIgnoreCase(strName)) {
-//                this.ts = reader.nextString();
-//            } else if ("sign".equalsIgnoreCase(strName)) {
-//                this.sign = reader.nextString();
-//            } else {
-//                reader.skipValue();
-//            }
-//        }
-//        reader.endObject();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String strName = reader.nextName();
+            if ("name".equalsIgnoreCase(strName)) {
+                this.name = reader.nextString();
+            } else if ("time".equalsIgnoreCase(strName)) {
+                this.time = reader.nextString();
+            } else if ("stream_addr".equalsIgnoreCase(strName)) {
+                readStreamAddr(reader);
+            } else if ("room_key".equalsIgnoreCase(strName)) {
+                this.roomKey = reader.nextString();
+            } else if ("status".equalsIgnoreCase(strName)) {
+                this.status = reader.nextString();
+            } else if ("plflag".equalsIgnoreCase(strName)) {
+                this.plFlag = reader.nextString();
+            } else if ("ts".equalsIgnoreCase(strName)) {
+                this.ts = reader.nextString();
+            } else if ("sign".equalsIgnoreCase(strName)) {
+                this.sign = reader.nextString();
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
     }
 
     protected void readStreamAddr(JsonReader reader) throws IOException {
