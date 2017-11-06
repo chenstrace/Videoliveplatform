@@ -1289,8 +1289,9 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
     private void onChatInfo(ChatInfo chat_info) {
         this.mRoomState.mInfoExtend.chatInfo = chat_info;
         this.mAppId = chat_info.appid;
-        this.mRoomIp = chat_info.getAllAddrString();
+        this.mRoomIp = chat_info.getAllAddrString(); //弹幕服务器地址
         try {
+            //这里登录弹幕服务器
             KDPushManagerX.getInstance().start(this, String.valueOf(chat_info.rid), this.mAppId, this.mRoomIp, chat_info.ts, chat_info.sign, chat_info.authtype, this);
         } catch (Exception e) {
 
