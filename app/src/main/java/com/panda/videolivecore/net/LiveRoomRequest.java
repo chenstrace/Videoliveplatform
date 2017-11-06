@@ -27,7 +27,9 @@ public class LiveRoomRequest {
     }
 
     public void sendGetChatInfo(String strRroomId, String strContext) {
-        this.m_request.send(UrlConst.getChatInfoUrl(strRroomId), true, strContext);
+
+        String url = UrlConst.getChatInfoUrl(strRroomId);
+        this.m_request.send(url, true, strContext);
     }
 
     public void sendGetBackupChatInfo(String strRroomId, String strContext) {

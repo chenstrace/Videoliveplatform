@@ -94,6 +94,9 @@ import java.util.TimerTask;
 //import kd.push.message.MessageData;
 import org.json.JSONObject;
 
+import kd.push.KDPushManagerX;
+import kd.push.PushCallbackX;
+import kd.push.message.MessageData;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IMediaPlayer.OnCompletionListener;
 import tv.danmaku.ijk.media.player.IMediaPlayer.OnErrorListener;
@@ -102,7 +105,7 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 import tv.danmaku.ijk.media.player.widget.VideoView;
 
 
-public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWrapCallback, IHttpRequestEvent, EnterRoomStateEvent {
+public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWrapCallback, IHttpRequestEvent, EnterRoomStateEvent,PushCallbackX {
     private static final int MSG_RECEIVE_CHATINFO = 272;
     public static final int PLAYING = 1;
     public static final int PLAY_ERROR = 4;
@@ -504,7 +507,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
         if (this.mCurrentStatus == 2) {
             restartPlay();
         }
-        //KDPushManagerX.getInstance().checkConnection();
+        KDPushManagerX.getInstance().checkConnection();
         this.isLimitShowChatError = false;
         this.mLimitShowChatErrorFlag = 0;
     }
@@ -515,7 +518,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
             unregisterReceiver(this.mReceiver);
         }
         this.mDanmakuViewWrap.Release();
-        //KDPushManagerX.getInstance().stop();
+        KDPushManagerX.getInstance().stop();
         this.mCurrentStatus = -1;
         this.mWifilock.release();
     }
@@ -1288,7 +1291,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
         this.mAppId = chat_info.appid;
         this.mRoomIp = chat_info.getAllAddrString();
         try {
-//            KDPushManagerX.getInstance().start(this, String.valueOf(chat_info.rid), this.mAppId, this.mRoomIp, chat_info.ts, chat_info.sign, chat_info.authtype, this);
+            KDPushManagerX.getInstance().start(this, String.valueOf(chat_info.rid), this.mAppId, this.mRoomIp, chat_info.ts, chat_info.sign, chat_info.authtype, this);
         } catch (Exception e) {
 
         }
@@ -1586,6 +1589,108 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
             });
         }
     }
+    public void messageArrived(String userId, List<MessageData> messageDatasList) {
+        if (userId.endsWith(this.mAppId)) {
+            String strCurId = String.format("%d", new Object[]{Integer.valueOf(MyApplication.getInstance().GetLoginManager().GetUserInfo().rid)});
+            for (MessageData messageData : messageDatasList) {
+                try {
+                    String dataType = new String();
+                    String strFromId = new String();
+                    String strFromUserName = new String();
+                    String strFromUserNickName = new String();
+                    String strFromUserIdentity = "30";
+                    String strToRoomId = new String();
+                    String strFromUserSpIdentity = "";
+                    String strMsg = new String();
+                    JsonReader reader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(messageData.getBody().getBytes()), "UTF-8"));
+                    reader.beginObject();
+                    while (reader.hasNext()) {
+                        String name = reader.nextName();
+                        if (name.equalsIgnoreCase("type")) {
+                            dataType = reader.nextString();
+                        } else if (name.equalsIgnoreCase("data")) {
+                            reader.beginObject();
+                            while (reader.hasNext()) {
+                                String nameInData = reader.nextName();
+                                if (nameInData.equalsIgnoreCase("from")) {
+                                    reader.beginObject();
+                                    while (reader.hasNext()) {
+                                        String nameInFromqid = reader.nextName();
+                                        if (nameInFromqid.equalsIgnoreCase("rid")) {
+                                            strFromId = reader.nextString();
+                                        } else if (nameInFromqid.equalsIgnoreCase("userName")) {
+                                            strFromUserName = reader.nextString();
+                                        } else if (nameInFromqid.equalsIgnoreCase("nickName")) {
+                                            strFromUserNickName = reader.nextString();
+                                        } else if (nameInFromqid.equalsIgnoreCase("identity")) {
+                                            strFromUserIdentity = reader.nextString();
+                                        } else if (nameInFromqid.equalsIgnoreCase("sp_identity")) {
+                                            strFromUserSpIdentity = reader.nextString();
+                                        } else {
+                                            reader.skipValue();
+                                        }
+                                    }
+                                    reader.endObject();
+                                } else if (nameInData.equalsIgnoreCase("to")) {
+                                    reader.beginObject();
+                                    while (reader.hasNext()) {
+                                        if (reader.nextName().equalsIgnoreCase("toroom")) {
+                                            strToRoomId = reader.nextString();
+                                        } else {
+                                            reader.skipValue();
+                                        }
+                                    }
+                                    reader.endObject();
+                                } else if (nameInData.equalsIgnoreCase("content")) {
+                                    strMsg = reader.nextString();
+                                } else {
+                                    reader.skipValue();
+                                }
+                            }
+                            reader.endObject();
+                        } else {
+                            reader.skipValue();
+                        }
+                    }
+                    reader.endObject();
+                    reader.close();
+                    MessageDataInfo MsgInfo = new MessageDataInfo();
+                    MsgInfo.recvId = strFromId;
+                    MsgInfo.currentId = strCurId;
+                    String displayName = strFromUserNickName;
+                    if (displayName.isEmpty()) {
+                        displayName = "User" + strFromId;
+                    }
+                    MsgInfo.fromUserNick = displayName;
+                    MsgInfo.contentData = strMsg;
+                    MsgInfo.dataType = dataType;
+                    MsgInfo.toRoomId = strToRoomId;
+                    String identity = strFromUserSpIdentity;
+                    if (identity.isEmpty()) {
+                        identity = strFromUserIdentity;
+                    }
+                    MsgReceiverType typeId = MsgReceiverType.MSG_RECEIVER_NORMAL;
+                    if (identity.equalsIgnoreCase("60")) {
+                        typeId = MsgReceiverType.MSG_RECEIVER_ROOM_ADMIN;
+                    } else if (identity.equalsIgnoreCase("120")) {
+                        typeId = MsgReceiverType.MSG_RECEIVER_ROOM_SUPER_ADMIN;
+                    } else if (identity.equalsIgnoreCase("90")) {
+                        typeId = MsgReceiverType.MSG_RECEIVER_ROOM_OWNER;
+                    } else if (identity.equalsIgnoreCase("10000")) {
+                        typeId = MsgReceiverType.MSG_RECEIVER_HEADER_MASTER;
+                    }
+                    MsgInfo.userType = typeId;
+                    Message msg = Message.obtain();
+                    msg.obj = MsgInfo;
+                    msg.what = 272;
+                    this.m_Handler.sendMessage(msg);
+                } catch (Exception e) {
+                    //LogUtil.e(TAG, e.toString());
+                }
+            }
+        }
+    }
+
 
 
     private void onDispatchReceiveChatInfo(MessageDataInfo info) {
@@ -1616,7 +1721,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
                 this.mChatRoomHostInfoView.refreshFollowState();
                 this.mChatRoomView.refreshBamboo();
                 try {
-                    //KDPushManagerX.getInstance().stop();
+                    KDPushManagerX.getInstance().stop();
                 } catch (Exception e) {
                     //LogUtil.e(TAG, e.toString());
                 }
