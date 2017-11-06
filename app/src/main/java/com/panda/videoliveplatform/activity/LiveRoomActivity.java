@@ -1596,7 +1596,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
             if (!info.recvId.equalsIgnoreCase(info.currentId)) {
                 this.mChatRoomView.ReceiveMessage(info.fromUserNick, info.contentData, info.userType);
             }
-//            this.mDanmakuViewWrap.addDanmaku(info.contentData, false);
+            this.mDanmakuViewWrap.addDanmaku(info.contentData, false);
         } else if (info.dataType.equalsIgnoreCase("206")) {
             this.mChatRoomView.ReceiveBambooMessage(info.fromUserNick, info.contentData, info.userType);
         } else if (info.dataType.equalsIgnoreCase("207")) {
@@ -1607,6 +1607,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
             onServerStreamBreak();
         }
     }
+
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -1621,10 +1622,9 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
                 }
                 this.m_request.sendGetChatInfo(this.mRoomState.mRoomId, "GetChatInfo");
             }
+        } else if (requestCode == TaskListActivity.TASK_LIST_REQUEST_CODE) {
+            this.mChatRoomView.refreshBamboo();
         }
-// else if (requestCode == TaskListActivity.TASK_LIST_REQUEST_CODE) {
-//            this.mChatRoomView.refreshBamboo();
-//        }
     }
 
     public void onChangeRoomInfo(RoomInfo info) {

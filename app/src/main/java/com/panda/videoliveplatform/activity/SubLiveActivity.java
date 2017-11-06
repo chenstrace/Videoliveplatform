@@ -102,16 +102,15 @@ public class SubLiveActivity extends Activity implements OnSubLiveItemListener {
     }
 
     public void onSubLiveItemClick(SubLiveItemInfo info) {
-//        Intent intent = new Intent();
-//        intent.setClass(this, LiveRoomActivity.class);
-//        intent.putExtra("addrStream", "");
-//        intent.putExtra("urlRoom", "");
-//        intent.putExtra("urlImage", info.pictures.img != null ? info.pictures.img : "");
-//        intent.putExtra("idRoom", info.id);
-//        startActivity(intent);
-
-        Log.d(TAG, "onSubLiveItemClick: ");
+        Intent intent = new Intent();
+        intent.setClass(this, LiveRoomActivity.class);
+        intent.putExtra("addrStream", "");
+        intent.putExtra("urlRoom", "");
+        intent.putExtra("urlImage", info.pictures.img != null ? info.pictures.img : "");
+        intent.putExtra("idRoom", info.id);
+        startActivity(intent);
     }
+
 
     protected void loadData(int page) {
         final boolean isRefreshFromTop = this.mPage == 1;

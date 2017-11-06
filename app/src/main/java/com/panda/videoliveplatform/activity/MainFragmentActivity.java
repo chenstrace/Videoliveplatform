@@ -206,7 +206,6 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
     }
 
     public void onShowFragmentLive() {
-        Log.d(TAG, "onShowFragmentLive: 22222222");
         changeFragment(2);
     }
 
