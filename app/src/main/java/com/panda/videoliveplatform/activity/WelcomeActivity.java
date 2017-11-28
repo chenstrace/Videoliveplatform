@@ -13,6 +13,7 @@ public class WelcomeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        //postDelayed类似Windows API中的PostMessage，在执行队列中放入一条消息，多用于指令的延迟执行
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 WelcomeActivity.this.startActivity(new Intent(WelcomeActivity.this, MainFragmentActivity.class));

@@ -45,6 +45,7 @@ public class HomeFragment extends BaseFragment {
 
     public static HomeFragment newInstance(Context context) {
         HomeFragment fragment = new HomeFragment();
+        //这里保存了上层MainFragmentActivity的this指针，可用于处理扩展和通信
         fragment.setParams(context);
         return fragment;
     }
@@ -125,7 +126,10 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void initViews(View view) {
+        //初始化loading的视图
         initLoadingView(view);
+
+        //初始化下拉刷新列表
         this.mPullRefreshListView = (PullToRefreshListView) view.findViewById(R.id.livelist);
         this.mPullRefreshListView.setOnRefreshListener(new OnRefreshListener<ListView>() {
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -138,6 +142,8 @@ public class HomeFragment extends BaseFragment {
         this.mAdapter = new HomeListAdapter(MyApplication.getInstance().getApplicationContext(), this.mListener);
         this.mPullRefreshListView.setAdapter(this.mAdapter);
         this.mPullRefreshListView.setEmptyView(view.findViewById(R.id.loadview));
+
+        //发起请求，获取轮播信息以及分类信息
         reLoadData();
     }
 

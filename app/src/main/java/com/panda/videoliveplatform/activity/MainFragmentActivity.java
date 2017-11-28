@@ -116,6 +116,7 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
 
     private void initMembers() {
         if (this.home_frag == null) {
+            //经典的viewpager加fragment的用法
             FragmentManager fm = getSupportFragmentManager();
             this.home_frag = HomeFragment.newInstance(this);
             this.live_frag = LiveFragment.newInstance(this);
@@ -134,6 +135,8 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
             this.mPager.setCurrentItem(0);
             this.mPager.setOnPageChangeListener(new MyOnPageChangeListener());
             this.mPager.setOffscreenPageLimit(3);
+
+            //设置底部四个图标的点击响应处理函数开始
             findViewById(R.id.main_home).setOnClickListener(new OnClickListener() {
                 public void onClick(View arg0) {
                     MainFragmentActivity.this.changeFragment(0);
@@ -154,10 +157,15 @@ public class MainFragmentActivity extends FragmentActivity implements OnHomeFrag
                     MainFragmentActivity.this.changeFragment(3);
                 }
             });
+            //设置底部四个图标的点击响应处理函数结束
+
+            //设置底部四个图标上的文字开始
             this.mHomeBtn = (TextView) findViewById(R.id.main_home_btn);
             this.mColumnLivebtn = (TextView) findViewById(R.id.main_column_live_btn);
             this.mLivebtn = (TextView) findViewById(R.id.main_live_btn);
             this.mUserBtn = (TextView) findViewById(R.id.main_user_btn);
+            //设置底部四个图标上的文字开始
+
             this.mSearchIcon.setOnClickListener(new OnClickListener() {
                 public void onClick(View view) {
                     Intent intent = new Intent();

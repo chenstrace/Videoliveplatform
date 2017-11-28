@@ -25,6 +25,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void initLoadingView(View view) {
+        //产品经理必备的基本意识，成功无数据、失败
         this.mLoadingView = view.findViewById(R.id.loading);
         this.mLoadErrorView = view.findViewById(R.id.loaderror);
         this.mLoadCompeleteNodataView = view.findViewById(R.id.loadsuccess_nodata);

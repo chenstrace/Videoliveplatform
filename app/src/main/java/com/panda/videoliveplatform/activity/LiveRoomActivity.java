@@ -239,8 +239,11 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
 
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        //加载ijkplayer
         IjkMediaPlayer.loadLibrariesOnce(null);
         IjkMediaPlayer.native_profileBegin("libijkplayer.so");
+
+
         setContentView(R.layout.activity_live_room);
         this.mRootLayout = findViewById(R.id.root);
         this.mVideoView = (VideoView) findViewById(R.id.surface_view);
@@ -261,15 +264,17 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
         this.mPresenterLine = (LinearLayout) findViewById(R.id.liveroom_presenter_line);
         this.mWifilock = ((WifiManager) getSystemService("wifi")).createWifiLock("WifiLock_For_LiveRoom");
         this.mWifilock.acquire();
-        initIntent();
-        initVideoView();
-        initViewPage();
-        initDanmakuView();
-        initMiniControl();
-        initFullScreenControl();
+
+        initIntent(); //记录视频流信息、主播信息
+        initVideoView();//初始化播放器，请求视频流
+        initViewPage(); //初始化未全屏状态下的viewpager
+        initDanmakuView(); //初始化弹幕引擎
+        initMiniControl(); //初始化观看人数，播放按钮
+        initFullScreenControl(); //初始化全屏控件
         refreshLiveRoom();
         initLiveStatus();
-        initBroadcastReceiver();
+
+        initBroadcastReceiver();//初始化广播接收器，用于处理网络连接状况的变化
         initHandle();
     }
 
@@ -1446,6 +1451,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
                 info = new ResultMsgInfo();
                 EnterRoomInfo infoExtend = new EnterRoomInfo();
                 if (LiveRoomRequest.readEnterRoomInfo(strReponse, info, infoExtend)) {
+                    //发送请求，获取弹幕服务器信息，状态机转换到GetChatInfo
                     onEnterRoom(true, info, infoExtend);
                     this.mEnterRoomSucess = true;
                 } else {
@@ -1462,6 +1468,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
             ChatInfo chat_info = new ChatInfo();
             if (LiveRoomRequest.readChatInfo(strReponse, info, chat_info)) {
                 this.mGetMainChatInfo = true;
+                //发送弹幕请求，只能帮你到这了
                 onChatInfo(chat_info);
             } else {
                 this.mGetMainChatInfo = false;
