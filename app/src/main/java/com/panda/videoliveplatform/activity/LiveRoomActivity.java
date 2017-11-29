@@ -269,9 +269,9 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
         initVideoView();//初始化播放器，请求视频流
         initViewPage(); //初始化未全屏状态下的viewpager
         initDanmakuView(); //初始化弹幕引擎
-        initMiniControl(); //初始化观看人数，播放按钮
+        initMiniControl(); //初始化观看人数TextView，播放按钮
         initFullScreenControl(); //初始化全屏控件
-        refreshLiveRoom();
+        refreshLiveRoom();//发送获取房间信息的请求，服务端应答成功后，再发送请求弹幕服务器的请求，详见onResponse
         initLiveStatus();
 
         initBroadcastReceiver();//初始化广播接收器，用于处理网络连接状况的变化
@@ -770,24 +770,6 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
     }
 
     public void onClickShare(View view) {
-//        String name = this.mRoomState.mInfoExtend.roomInfo.name;
-//        String id = this.mRoomState.mInfoExtend.roomInfo.id;
-//        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(id)) {
-//            ShareDialog shareDialog = new ShareDialog(this, R.style.simple_bubble_message_dialog);
-//            shareDialog.setRoomName(name);
-//            shareDialog.setRoomUrl(UrlConst.getRoomUrl(id));
-//            Window win = shareDialog.getWindow();
-//            win.setGravity(51);
-//            LayoutParams params = new LayoutParams();
-//            params.copyFrom(win.getAttributes());
-//            Rect frame = new Rect();
-//            getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
-//            params.width = frame.width();
-//            params.height = frame.height();
-//            win.setAttributes(params);
-//            win.setWindowAnimations(0);
-//            shareDialog.show();
-//        }
     }
 
     public void onClickFullscreen(View view) {
@@ -1451,7 +1433,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
                 info = new ResultMsgInfo();
                 EnterRoomInfo infoExtend = new EnterRoomInfo();
                 if (LiveRoomRequest.readEnterRoomInfo(strReponse, info, infoExtend)) {
-                    //发送请求，获取弹幕服务器信息，状态机转换到GetChatInfo
+                    //获取房间信息成功，发送获取弹幕服务器信息的请求，状态机转换到GetChatInfo
                     onEnterRoom(true, info, infoExtend);
                     this.mEnterRoomSucess = true;
                 } else {
@@ -1468,7 +1450,7 @@ public class LiveRoomActivity extends FragmentActivity implements IDanmakuViewWr
             ChatInfo chat_info = new ChatInfo();
             if (LiveRoomRequest.readChatInfo(strReponse, info, chat_info)) {
                 this.mGetMainChatInfo = true;
-                //发送弹幕请求，只能帮你到这了
+                //获取弹幕服务器信息成功，发送弹幕请求
                 onChatInfo(chat_info);
             } else {
                 this.mGetMainChatInfo = false;
